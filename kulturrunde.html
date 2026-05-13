@@ -135,6 +135,7 @@
       content: '';
       position: absolute;
       inset: -34px -54px;
+      border-radius: 9999px;
       background: radial-gradient(closest-side, rgba(255, 230, 128, 0.95) 0%, rgba(255, 230, 128, 0.25) 45%, rgba(255, 230, 128, 0.0) 72%);
       filter: blur(18px);
       opacity: 1;
@@ -161,7 +162,7 @@
 </head>
  <body class="bg-background text-on-background">
  <!-- Navigation -->
- <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/80 backdrop-blur-sm border-b border-outline-variant">
+ <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/80 backdrop-blur-sm border-b border-outline-variant">
   <a id="brand-logo" class="inline-flex items-center" href="./index.html" aria-label="Zur Startseite">
    <iframe src="https://lottie.host/embed/4e016d65-71cd-4c9e-8438-30cd0c93b358/IypA0qhQdE.lottie" class="w-14 h-14 md:w-16 md:h-16 border-0 pointer-events-none" title="Lottie animation" loading="lazy"></iframe>
   </a>
@@ -176,7 +177,7 @@
    </button>
   </div>
  </header>
- <div id="mobile-menu" class="hidden md:hidden fixed top-20 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant px-margin-desktop py-6">
+ <div id="mobile-menu" class="hidden md:hidden fixed top-20 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant px-margin-mobile md:px-margin-desktop py-6">
   <div class="flex flex-col gap-6">
    <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./index.html">Arbeiten</a>
    <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./about.html">Über mich</a>
@@ -192,7 +193,7 @@
   </div>
  </section>
  <!-- Metadata Grid -->
- <section class="px-margin-desktop py-20 border-b border-outline-variant">
+ <section class="px-margin-mobile md:px-margin-desktop py-20 border-b border-outline-variant">
   <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
    <div class="flex flex-col gap-2">
     <span class="font-label-caps text-label-caps text-on-surface-variant">CLIENT</span>
@@ -213,7 +214,7 @@
   </div>
  </section>
  <!-- Editorial: The Brief -->
- <section class="px-margin-desktop py-section-gap flex flex-col items-center">
+ <section class="px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col items-center">
   <div class="max-w-3xl w-full">
    <span class="font-label-caps text-label-caps text-primary mb-8 block">ÜBER DAS PROJEKT</span>
    <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-12">Ein Social-Media-Format, das Menschen, Leidenschaften und regionale Produkte verbindet.</h2>
@@ -231,7 +232,7 @@
   </div>
  </section>
  <!-- Gallery: The Process -->
- <section class="px-margin-desktop pb-24 md:pb-32">
+ <section class="px-margin-mobile md:px-margin-desktop pb-24 md:pb-32">
   <div class="mb-8">
    <span class="font-label-caps text-label-caps text-primary block mb-4">AUSZUG</span>
    <h3 class="font-headline-md text-headline-md text-on-surface">Eine Episode aus der Serie</h3>
@@ -266,7 +267,7 @@
   <span class="cta-glow-wrap"><a id="cta-start-project" class="cta-glow inline-block bg-on-surface text-surface font-label-caps text-label-caps px-12 py-6 hover:bg-primary transition-colors tracking-widest" href="./contact.html">Schreib mir</a></span>
  </section>
  <!-- Footer -->
- <footer class="w-full px-margin-desktop py-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant bg-surface">
+ <footer class="w-full px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant bg-surface">
   <div class="font-label-caps text-label-caps font-bold text-on-surface">STUDIO</div>
   <div class="flex gap-10 font-label-caps text-label-caps text-on-surface-variant">
    <a class="hover:text-primary transition-colors" href="./index.html">Archive</a>
