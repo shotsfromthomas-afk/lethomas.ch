@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "tertiary-container": "#ffffff",
+                  "surface-variant": "#e5e2e1",
+                  "outline": "#747878",
+                  "inverse-primary": "#c6c6c7",
+                  "surface-bright": "#fcf8f8",
+                  "on-secondary": "#ffffff",
+                  "inverse-surface": "#313030",
+                  "secondary-container": "#dcdddd",
+                  "surface-container-high": "#ebe7e7",
+                  "primary-fixed": "#e2e2e2",
+                  "primary": "#5d5f5f",
+                  "primary-fixed-dim": "#c6c6c7",
+                  "surface-container-lowest": "#ffffff",
+                  "surface-container-low": "#f6f3f2",
+                  "secondary-fixed-dim": "#c6c6c7",
+                  "on-surface": "#1c1b1b",
+                  "on-tertiary-container": "#757676",
+                  "on-secondary-fixed-variant": "#454747",
+                  "on-secondary-container": "#5f6161",
+                  "on-secondary-fixed": "#1a1c1c",
+                  "tertiary-fixed": "#e2e2e2",
+                  "tertiary": "#5d5f5f",
+                  "surface-container": "#f1edec",
+                  "secondary": "#5d5f5f",
+                  "tertiary-fixed-dim": "#c6c6c6",
+                  "surface-dim": "#ddd9d9",
+                  "on-tertiary-fixed-variant": "#454747",
+                  "on-primary-container": "#747676",
+                  "surface": "#fcf8f8",
+                  "on-primary": "#ffffff",
+                  "on-error-container": "#93000a",
+                  "secondary-fixed": "#e2e2e2",
+                  "on-primary-fixed-variant": "#454747",
+                  "on-error": "#ffffff",
+                  "error-container": "#ffdad6",
+                  "surface-container-highest": "#e5e2e1",
+                  "on-primary-fixed": "#1a1c1c",
+                  "inverse-on-surface": "#f4f0ef",
+                  "error": "#ba1a1a",
+                  "on-tertiary-fixed": "#1a1c1c",
+                  "on-tertiary": "#ffffff",
+                  "background": "#fcf8f8",
+                  "on-surface-variant": "#444748",
+                  "on-background": "#1c1b1b",
+                  "surface-tint": "#5d5f5f",
+                  "primary-container": "#ffffff",
+                  "outline-variant": "#c4c7c8"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "margin-mobile": "24px",
+                  "unit": "8px",
+                  "margin-tablet": "40px",
+                  "gutter": "32px",
+                  "container-max": "1440px",
+                  "section-gap": "160px",
+                  "margin-desktop": "80px"
+          },
+          "fontFamily": {
+                  "display-xl-mobile": ["Hanken Grotesk"],
+                  "display-xl": ["Hanken Grotesk"],
+                  "body-sm": ["Hanken Grotesk"],
+                  "label-caps": ["Hanken Grotesk"],
+                  "headline-lg": ["Hanken Grotesk"],
+                  "body-lg": ["Hanken Grotesk"],
+                  "headline-lg-mobile": ["Hanken Grotesk"],
+                  "headline-md": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+                  "display-xl-mobile": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+                  "display-xl": ["80px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+                  "body-sm": ["15px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                  "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "600" }],
+                  "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                  "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                  "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                  "headline-md": ["24px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Hanken Grotesk', sans-serif; background-color: #fcf8f8; color: #1c1b1b; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+    #cta-verb {
+      display: inline-block;
+      will-change: transform, opacity;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+    #cta-verb.is-out {
+      transform: translateY(14px);
+      opacity: 0;
+    }
+    #cta-verb.is-pre-in {
+      transform: translateY(-14px);
+      opacity: 0;
+    }
+    .cta-glow {
+      position: relative;
+      display: inline-flex;
+      isolation: isolate;
+      overflow: visible;
+      will-change: transform, opacity;
+      z-index: 10;
+    }
+    .cta-glow-wrap {
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
+    }
+    .cta-glow-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -34px -54px;
+      background: radial-gradient(closest-side, rgba(255, 230, 128, 0.95) 0%, rgba(255, 230, 128, 0.25) 45%, rgba(255, 230, 128, 0.0) 72%);
+      filter: blur(18px);
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 700ms ease 360ms, transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 360ms;
+      animation: ctaGlowPulse 4200ms ease-in-out 1400ms infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes ctaGlowPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cta-glow { animation: none !important; }
+      .cta-glow-wrap::before {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+ <body class="bg-background text-on-background">
+ <!-- Navigation -->
+ <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/80 backdrop-blur-sm border-b border-outline-variant">
+  <a id="brand-logo" class="inline-flex items-center" href="./index.html" aria-label="Zur Startseite">
+   <iframe src="https://lottie.host/embed/4e016d65-71cd-4c9e-8438-30cd0c93b358/IypA0qhQdE.lottie" class="w-14 h-14 md:w-16 md:h-16 border-0 pointer-events-none" title="Lottie animation" loading="lazy"></iframe>
+  </a>
+  <nav class="hidden md:flex items-center gap-10">
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./index.html">Arbeiten</a>
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./about.html">Über mich</a>
+  </nav>
+  <button class="hidden md:inline-flex bg-on-surface text-surface font-label-caps text-label-caps px-6 py-3 transition-all duration-300 hover:opacity-80">KONTAKT</button>
+  <div class="md:hidden">
+   <button id="mobile-menu-button" class="inline-flex items-center justify-center" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" type="button">
+    <span class="material-symbols-outlined text-on-surface">menu</span>
+   </button>
+  </div>
+ </header>
+ <div id="mobile-menu" class="hidden md:hidden fixed top-20 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant px-margin-desktop py-6">
+  <div class="flex flex-col gap-6">
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./index.html">Arbeiten</a>
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./about.html">Über mich</a>
+   <a class="bg-on-surface text-surface font-label-caps text-label-caps px-6 py-3 w-fit active:opacity-80 transition-opacity" href="mailto:hello@studio.com">Schreib mir</a>
+  </div>
+ </div>
+ <!-- Hero Section -->
+ <section class="w-full h-screen relative overflow-hidden bg-on-surface">
+  <img class="w-full h-full object-cover opacity-80" src="./bilder/header_Kulturrunde.JPG" alt="Kulturrunde in die Region" loading="lazy"/>
+  <div class="absolute inset-0 flex flex-col justify-end p-margin-desktop bg-gradient-to-t from-on-surface/60 to-transparent">
+   <h1 class="font-display-xl text-display-xl-mobile md:text-display-xl text-surface uppercase max-w-4xl">Kulturrunde in die Region</h1>
+   <p class="font-label-caps text-label-caps text-surface/80 mt-4 tracking-[0.3em]">MIGROS GENOSSENSCHAFT OSTSCHWEIZ • 2024</p>
+  </div>
+ </section>
+ <!-- Metadata Grid -->
+ <section class="px-margin-desktop py-20 border-b border-outline-variant">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+   <div class="flex flex-col gap-2">
+    <span class="font-label-caps text-label-caps text-on-surface-variant">CLIENT</span>
+    <span class="font-body-lg text-body-lg font-medium">Migros Genossenschaft Ostschweiz</span>
+   </div>
+   <div class="flex flex-col gap-2">
+    <span class="font-label-caps text-label-caps text-on-surface-variant">FORMAT</span>
+    <span class="font-body-lg text-body-lg font-medium">Social Media Video-Serie</span>
+   </div>
+   <div class="flex flex-col gap-2">
+    <span class="font-label-caps text-label-caps text-on-surface-variant">YEAR</span>
+    <span class="font-body-lg text-body-lg font-medium">2024</span>
+   </div>
+   <div class="flex flex-col gap-2">
+    <span class="font-label-caps text-label-caps text-on-surface-variant">SERVICES</span>
+    <span class="font-body-lg text-body-lg font-medium">Konzept, Storytelling, Produktion</span>
+   </div>
+  </div>
+ </section>
+ <!-- Editorial: The Brief -->
+ <section class="px-margin-desktop py-section-gap flex flex-col items-center">
+  <div class="max-w-3xl w-full">
+   <span class="font-label-caps text-label-caps text-primary mb-8 block">ÜBER DAS PROJEKT</span>
+   <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-12">Ein Social-Media-Format, das Menschen, Leidenschaften und regionale Produkte verbindet.</h2>
+   <div class="font-body-lg text-body-lg text-on-surface-variant space-y-6 leading-relaxed">
+    <p>Für die Migros Ostschweiz entstand mit „Kulturrunde in der Region“ ein Social-Media-Format, das Menschen aus der Ostschweiz mit ihren Leidenschaften und regionalen Produkten verbindet. Im Zentrum jeder Episode steht eine Persönlichkeit aus der Region, deren Hobby oder Tätigkeit mit einem Produkt aus dem Label „Aus der Region. Für die Region.“ verknüpft wird.</p>
+    <p>Die Serie begleitet unterschiedliche Menschen – darunter ein Fussballer, eine Eisbadende, ein DJ, ein Wanderer oder ein Skydiver – in ihrem persönlichen Umfeld und zeigt die Vielfalt regionaler Kultur und Aktivitäten auf authentische Weise.</p>
+    <p>Im Rahmen des Projekts wurden das Gesamtkonzept entwickelt, die einzelnen Episoden konzipiert sowie die videografische Umsetzung realisiert. Dazu gehörten die kreative Ausarbeitung der Inhalte, Storytelling, Dreharbeiten und Postproduktion für die Veröffentlichung auf Social Media.</p>
+    <p>Das Ergebnis ist eine moderne Video-Serie mit starkem regionalem Bezug, die Geschichten, Menschen und Produkte emotional miteinander verbindet.</p>
+    <blockquote class="py-12 border-y border-outline-variant my-12">
+     <p class="font-display-xl text-headline-lg-mobile md:text-headline-md italic font-light text-on-surface leading-tight text-center">
+             "Geschichten, Menschen und Produkte emotional miteinander verbinden."
+           </p>
+    </blockquote>
+   </div>
+  </div>
+ </section>
+ <!-- Gallery: The Process -->
+ <section class="px-margin-desktop pb-24 md:pb-32">
+  <div class="mb-8">
+   <span class="font-label-caps text-label-caps text-primary block mb-4">AUSZUG</span>
+   <h3 class="font-headline-md text-headline-md text-on-surface">Eine Episode aus der Serie</h3>
+  </div>
+  <div class="relative">
+   <div class="relative aspect-[9/16] max-h-[520px] md:max-h-[600px] mx-auto max-w-[320px] md:max-w-[360px]">
+    <div id="video-stack" class="absolute inset-0">
+     <div class="video-layer absolute inset-0" data-video-index="0">
+      <video class="absolute inset-0 w-full h-full object-cover" controls playsinline preload="metadata" poster="./bilder/header_Kulturrunde.JPG">
+       <source src="./videos/260418_AdR_Portrait_DJ-Juan.mp4" type="video/mp4" />
+      </video>
+     </div>
+     <div class="video-layer absolute inset-0" data-video-index="1">
+      <video class="absolute inset-0 w-full h-full object-cover" controls playsinline preload="metadata" poster="./bilder/header_Kulturrunde.JPG">
+       <source src="./videos/260131_AdR_Portrait_Eisbaderin-Nadine-Wehrli.mp4" type="video/mp4" />
+      </video>
+     </div>
+    </div>
+
+    <button id="video-prev" type="button" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-2/3 w-10 h-10 inline-flex items-center justify-center bg-surface/60 backdrop-blur-sm hover:bg-surface/80 transition-colors" aria-label="Previous video">
+     <span class="material-symbols-outlined text-on-surface">chevron_left</span>
+    </button>
+    <button id="video-next" type="button" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-2/3 w-10 h-10 inline-flex items-center justify-center bg-surface/60 backdrop-blur-sm hover:bg-surface/80 transition-colors" aria-label="Next video">
+     <span class="material-symbols-outlined text-on-surface">chevron_right</span>
+    </button>
+   </div>
+ </div>
+ </section>
+ <!-- CTA Section -->
+ <section class="px-margin-mobile md:px-margin-desktop py-section-gap text-center">
+  <h2 class="font-display-xl text-display-xl-mobile md:text-display-xl mb-12">Lass uns etwas zusammen<br/><span id="cta-verb">erreichen</span>.</h2>
+  <span class="cta-glow-wrap"><a id="cta-start-project" class="cta-glow inline-block bg-on-surface text-surface font-label-caps text-label-caps px-12 py-6 hover:bg-primary transition-colors tracking-widest" href="./contact.html">Schreib mir</a></span>
+ </section>
+ <!-- Footer -->
+ <footer class="w-full px-margin-desktop py-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant bg-surface">
+  <div class="font-label-caps text-label-caps font-bold text-on-surface">STUDIO</div>
+  <div class="flex gap-10 font-label-caps text-label-caps text-on-surface-variant">
+   <a class="hover:text-primary transition-colors" href="./index.html">Archive</a>
+   <a class="hover:text-primary transition-colors" href="./about.html">Journal</a>
+   <a class="hover:text-primary transition-colors" href="./contact.html">Legal</a>
+  </div>
+  <div class="font-body-sm text-body-sm text-on-surface-variant opacity-80">
+      &copy; 2024 MINIMALIST PORTFOLIO. ALL RIGHTS RESERVED.
+    </div>
+ </footer>
+ <script>
+  (function () {
+   var button = document.getElementById('mobile-menu-button');
+   var menu = document.getElementById('mobile-menu');
+
+   if (!button || !menu) return;
+
+   function setOpen(isOpen) {
+    menu.classList.toggle('hidden', !isOpen);
+    button.setAttribute('aria-expanded', String(isOpen));
+   }
+
+   button.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var isOpen = !menu.classList.contains('hidden');
+    setOpen(!isOpen);
+   });
+
+   document.addEventListener('click', function (e) {
+    if (menu.classList.contains('hidden')) return;
+    if (menu.contains(e.target) || button.contains(e.target)) return;
+    setOpen(false);
+   });
+
+   document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setOpen(false);
+   });
+  })();
+ </script>
+
+ <script>
+  (function () {
+   var stack = document.getElementById('video-stack');
+   if (!stack) return;
+
+   var layers = Array.prototype.slice.call(stack.querySelectorAll('.video-layer'));
+   if (!layers.length) return;
+
+   var prev = document.getElementById('video-prev');
+   var next = document.getElementById('video-next');
+   var active = 0;
+
+   function pauseOthers(idx) {
+    for (var i = 0; i < layers.length; i++) {
+     var v = layers[i].querySelector('video');
+     if (!v) continue;
+     if (i !== idx && !v.paused) v.pause();
+    }
+   }
+
+   function layout(withAnim, direction) {
+    var prefersReduced = false;
+    try {
+     prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (err) {}
+
+    for (var i = 0; i < layers.length; i++) {
+     var front = i === active;
+     layers[i].style.zIndex = front ? '2' : '1';
+     layers[i].style.pointerEvents = front ? 'auto' : 'none';
+     layers[i].style.transition = prefersReduced ? 'opacity 160ms ease-out' : 'opacity 320ms ease-out, transform 320ms ease-out';
+
+     if (!withAnim || prefersReduced) {
+      layers[i].style.opacity = front ? '1' : '0';
+      layers[i].style.transform = 'translate3d(0,0,0)';
+     } else {
+      if (front) {
+       layers[i].style.opacity = '1';
+       layers[i].style.transform = 'translate3d(0,0,0)';
+      } else {
+       layers[i].style.opacity = '0';
+       layers[i].style.transform = 'translate3d(' + (direction > 0 ? '-16px' : '16px') + ',0,0)';
+      }
+     }
+    }
+
+    pauseOthers(active);
+   }
+
+   function goTo(idx) {
+    if (idx < 0) idx = layers.length - 1;
+    if (idx > layers.length - 1) idx = 0;
+    var direction = idx > active ? 1 : -1;
+    var prevIdx = active;
+    active = idx;
+
+    if (layers[prevIdx]) {
+     layers[prevIdx].style.opacity = '0';
+    }
+
+    window.setTimeout(function () {
+     layout(true, direction);
+    }, 0);
+   }
+
+   if (prev) prev.addEventListener('click', function () { goTo(active - 1); });
+   if (next) next.addEventListener('click', function () { goTo(active + 1); });
+
+   layout(false, 1);
+  })();
+ </script>
+
+ <script>
+  (function () {
+   var el = document.getElementById('cta-verb');
+   if (!el) return;
+
+   var reduceMotion = false;
+   try {
+    reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+   } catch (err) {}
+
+   var words = ['erreichen', 'bauen', 'entwickeln', 'testen'];
+   var i = 0;
+
+   function setWord(next) {
+    if (reduceMotion) {
+     el.textContent = next;
+     return;
+    }
+
+    el.classList.add('is-out');
+    window.setTimeout(function () {
+     el.textContent = next;
+     el.classList.remove('is-out');
+     el.classList.add('is-pre-in');
+     window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+       el.classList.remove('is-pre-in');
+      });
+     });
+    }, 180);
+   }
+
+   window.setInterval(function () {
+    i = (i + 1) % words.length;
+    setWord(words[i]);
+   }, 2200);
+  })();
+ </script>
+ </body></html>

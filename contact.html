@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#c6c6c7",
+                    "secondary-container": "#dcdddd",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-surface": "#1c1b1b",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#1a1c1c",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-container-low": "#f6f3f2",
+                    "primary-fixed": "#e2e2e2",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "tertiary-fixed": "#e2e2e2",
+                    "background": "#fcf8f8",
+                    "on-surface-variant": "#444748",
+                    "inverse-on-surface": "#f4f0ef",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#747878",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#5f6161",
+                    "tertiary-container": "#ffffff",
+                    "surface-container-high": "#ebe7e7",
+                    "on-tertiary-container": "#757676",
+                    "on-background": "#1c1b1b",
+                    "primary-fixed-dim": "#c6c6c7",
+                    "primary": "#5d5f5f",
+                    "surface-container": "#f1edec",
+                    "on-primary-container": "#747676",
+                    "surface-tint": "#5d5f5f",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "primary-container": "#ffffff",
+                    "tertiary": "#5d5f5f",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#454747",
+                    "surface-bright": "#fcf8f8",
+                    "surface-dim": "#ddd9d9",
+                    "surface": "#fcf8f8",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "secondary": "#5d5f5f",
+                    "inverse-surface": "#313030",
+                    "surface-variant": "#e5e2e1",
+                    "outline-variant": "#c4c7c8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-tablet": "40px",
+                    "gutter": "32px",
+                    "container-max": "1440px",
+                    "section-gap": "160px",
+                    "margin-mobile": "24px",
+                    "margin-desktop": "80px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Hanken Grotesk"],
+                    "display-xl-mobile": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-xl": ["Hanken Grotesk"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-xl": ["80px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                    "body-sm": ["15px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fcf8f8;
+            color: #1c1b1b;
+        }
+        body.is-yellow {
+            background-color: #FFE680 !important;
+        }
+        body.is-yellow .grayscale {
+            filter: none !important;
+        }
+        body.is-yellow #send-message {
+            outline: 2px solid rgba(26, 26, 26, 0.6);
+            outline-offset: 6px;
+            box-shadow: 0 0 0 10px rgba(255, 212, 0, 0.55), 0 18px 60px rgba(0, 0, 0, 0.18);
+        }
+    </style>
+</head>
+ <body class="bg-surface selection:bg-primary-fixed-dim selection:text-on-surface transition-colors duration-700">
+ <div id="yellow-overlay" class="fixed inset-0 pointer-events-none z-0">
+  <div id="yellow-overlay-circle" class="absolute rounded-full bg-[#FFE680] scale-0 transition-transform duration-700 ease-in-out"></div>
+ </div>
+ <div class="relative z-10">
+ <!-- TopAppBar -->
+ <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/80 backdrop-blur-sm border-b border-outline-variant dark:border-outline">
+  <a id="brand-logo" class="inline-flex items-center" href="./index.html" aria-label="Zur Startseite">
+   <iframe src="https://lottie.host/embed/4e016d65-71cd-4c9e-8438-30cd0c93b358/IypA0qhQdE.lottie" class="w-14 h-14 md:w-16 md:h-16 border-0 pointer-events-none" title="Lottie animation" loading="lazy"></iframe>
+  </a>
+ <nav class="hidden md:flex items-center gap-gutter">
+ <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./index.html">Arbeiten</a>
+ <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./about.html">Über mich</a>
+ </nav>
+ <button class="hidden md:inline-flex bg-[#1A1A1A] text-white px-6 py-3 font-label-caps text-label-caps hover:opacity-80 transition-opacity">
+             KONTAKT
+         </button>
+ <div class="md:hidden">
+  <button id="mobile-menu-button" class="inline-flex items-center justify-center" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" type="button">
+   <span class="material-symbols-outlined text-on-surface">menu</span>
+  </button>
+ </div>
+ </header>
+ <div id="mobile-menu" class="hidden md:hidden fixed top-20 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant px-margin-desktop py-6">
+  <div class="flex flex-col gap-6">
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./index.html">Arbeiten</a>
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./about.html">Über mich</a>
+   <a class="bg-[#1A1A1A] text-white px-6 py-3 font-label-caps text-label-caps w-fit active:opacity-80 transition-opacity" href="mailto:hello@studio-minimal.com">Schreib mir</a>
+  </div>
+ </div>
+ <main class="pt-32 pb-section-gap px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Section -->
+<section class="grid grid-cols-12 gap-gutter mb-section-gap">
+<div class="col-span-12 md:col-span-8">
+<h1 class="font-display-xl text-display-xl mb-unit">Kontakt aufnehmen</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Ich nehme aktuell neue Projekte und Kooperationen an. Wenn du eine Idee hast, die eine minimalistische Handschrift braucht, lass uns besprechen, wie wir sie zum Leben erwecken.
+                </p>
+</div>
+</section>
+<!-- Form & Content Section -->
+<section class="grid grid-cols-12 gap-gutter items-start">
+<!-- Left Side: Contact Form -->
+<div class="col-span-12 md:col-span-7">
+<form class="space-y-12">
+<div class="relative">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-4">VOLLSTÄNDIGER NAME</label>
+<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-outline-variant focus:ring-0 focus:border-on-surface px-0 py-4 font-body-lg text-body-lg transition-colors placeholder:text-outline/30" placeholder="Max Muster" type="text"/>
+</div>
+<div class="relative">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-4">E-MAIL-ADRESSE</label>
+<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-outline-variant focus:ring-0 focus:border-on-surface px-0 py-4 font-body-lg text-body-lg transition-colors placeholder:text-outline/30" placeholder="hallo@beispiel.ch" type="email"/>
+</div>
+<div class="relative">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-4">NACHRICHT</label>
+<textarea class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-outline-variant focus:ring-0 focus:border-on-surface px-0 py-4 font-body-lg text-body-lg transition-colors resize-none placeholder:text-outline/30" placeholder="Erzähl mir von deinem Projekt ..." rows="4"></textarea>
+</div>
+<div class="pt-8">
+<button id="send-message" class="relative bg-[#1A1A1A] text-white px-12 py-5 font-label-caps text-label-caps tracking-[0.25em] hover:bg-on-surface-variant transition-colors flex items-center gap-4" type="submit">
+                            NACHRICHT SENDEN
+                            <span id="send-message-anchor" class="absolute left-1/2 top-1/2 w-px h-px -translate-x-1/2 -translate-y-1/2"></span>
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Right Side: Details / Visual Offset -->
+<div class="col-span-12 md:col-start-9 md:col-span-4 mt-16 md:mt-0 space-y-16">
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-6">STANDORT</h3>
+<p class="font-body-lg text-body-lg">
+                        Schulstrasse 45<br/>
+                        8001 Zurich<br/>
+                        Schweiz
+                    </p>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-6">DIREKTKONTAKT</h3>
+<p class="font-body-lg text-body-lg mb-2 underline decoration-outline-variant underline-offset-8">hello@studio-minimal.com</p>
+<p class="font-body-lg text-body-lg">+41 44 234 56 78</p>
+</div>
+<div class="aspect-[4/5] bg-surface-container-low overflow-hidden relative border border-outline-variant">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 grayscale" data-alt="A clean and serene architectural shot of a modern studio interior with high ceilings and expansive windows. The lighting is soft and natural, emphasizing the minimalist white furniture and concrete floors. The composition is balanced and airy, reflecting a professional and high-end design workspace. Subtle grey shadows dance across the pristine surfaces, creating a mood of calm authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATwIeD5xJrvLtxjjKXd2Pvsimb2do_Xp-JwK0lv7i2-k4aC_a8lt5KgzfFJ6uQYt-fQoDJdigJx6DA8xv7p3BNqReEHTbIsMrUK9HFRRBFjjWP5n2XZSXIRzXFa4HyX8SEbLbqpBm73ylmIGrC5ajPNzrlhTR4B02VTopuNGGI_VTrYIBPMfhRrD6hu-CRrhx4vGc5hbPd-WlnRWeUqgf9FafG_dcooEcTwnOkGIJBqRvjVDAzUS6YakA7Mr4jm06YlqfCcQRCnEfW"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-desktop py-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant dark:border-outline">
+<div class="font-label-caps text-label-caps font-bold text-on-surface uppercase">&copy; 2024 MINIMALIST PORTFOLIO. ALL RIGHTS RESERVED.</div>
+<div class="flex gap-gutter items-center">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="./index.html">Archiv</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="./about.html">Journal</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="./contact.html">Impressum</a>
+</div>
+</footer>
+<script>
+  (function () {
+   var button = document.getElementById('mobile-menu-button');
+   var menu = document.getElementById('mobile-menu');
+
+   if (!button || !menu) return;
+
+   function setOpen(isOpen) {
+    menu.classList.toggle('hidden', !isOpen);
+    button.setAttribute('aria-expanded', String(isOpen));
+   }
+
+   button.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var isOpen = !menu.classList.contains('hidden');
+    setOpen(!isOpen);
+   });
+
+   document.addEventListener('click', function (e) {
+    if (menu.classList.contains('hidden')) return;
+    if (menu.contains(e.target) || button.contains(e.target)) return;
+    setOpen(false);
+   });
+
+   document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setOpen(false);
+   });
+  })();
+</script>
+<script>
+ (function () {
+  var logo = document.getElementById('brand-logo');
+  var circle = document.getElementById('yellow-overlay-circle');
+
+  if (!logo || !circle) return;
+
+  function positionCircleAt(cx, cy) {
+   var size = Math.ceil(Math.max(window.innerWidth, window.innerHeight) * 2.2);
+   circle.style.width = size + 'px';
+   circle.style.height = size + 'px';
+   circle.style.left = (cx - size / 2) + 'px';
+   circle.style.top = (cy - size / 2) + 'px';
+  }
+
+  function setYellow(isYellow) {
+   document.body.classList.toggle('is-yellow', isYellow);
+   circle.classList.toggle('scale-100', isYellow);
+   try {
+    if (!isYellow) window.localStorage.removeItem('yellowUntil');
+   } catch (err) {}
+  }
+
+  function restorePersistedYellow() {
+   var untilRaw = null;
+   try {
+    untilRaw = window.localStorage.getItem('yellowUntil');
+   } catch (err) {}
+   var until = untilRaw ? Number(untilRaw) : 0;
+   if (!until || Number.isNaN(until)) return;
+   var remaining = until - Date.now();
+   if (remaining <= 0) {
+    try { window.localStorage.removeItem('yellowUntil'); } catch (err) {}
+    return;
+   }
+
+   // Keep the page yellow, but do NOT play/show the overlay circle on load.
+   // This avoids a visible circle that appears to originate from the screen center.
+   document.body.classList.add('transition-none');
+   document.body.classList.add('is-yellow');
+   circle.classList.add('transition-none');
+   circle.classList.remove('scale-100');
+   circle.classList.add('scale-0');
+   window.requestAnimationFrame(function () {
+    document.body.classList.remove('transition-none');
+    circle.classList.remove('transition-none');
+   });
+
+   window.setTimeout(function () {
+    setYellow(false);
+   }, remaining);
+  }
+
+  try {
+   restorePersistedYellow();
+  } catch (err) {}
+
+  function closeYellowFromElement(el) {
+   try {
+    window.localStorage.removeItem('yellowUntil');
+   } catch (err) {}
+
+   var anchor = document.getElementById('send-message-anchor');
+   var target = anchor || el;
+   if (target && target.getBoundingClientRect) {
+    var rect = target.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var cy = rect.top + rect.height / 2;
+    positionCircleAt(cx, cy);
+   }
+
+   // Start from a fully open circle at the target (button) position, then shrink.
+   circle.classList.add('transition-none');
+   circle.classList.add('scale-100');
+   void circle.offsetWidth;
+   circle.classList.remove('transition-none');
+
+   // Turn the page background back to white, while the circle shrinks into the button.
+   document.body.classList.remove('is-yellow');
+
+   window.requestAnimationFrame(function () {
+    window.requestAnimationFrame(function () {
+     circle.classList.remove('scale-100');
+    });
+   });
+
+   window.setTimeout(function () {
+    setYellow(false);
+   }, 720);
+  }
+
+  var sendButton = document.getElementById('send-message');
+  if (sendButton) {
+   sendButton.addEventListener('click', function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (!document.body.classList.contains('is-yellow')) return;
+    e.preventDefault();
+    closeYellowFromElement(sendButton);
+   });
+  }
+
+  // no logo click animation; animation is only triggered when navigating to contact
+ })();
+</script>
+</div>
+</body>
+</html>

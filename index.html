@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#c6c6c7",
+                    "secondary-container": "#dcdddd",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-surface": "#1c1b1b",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#1a1c1c",
+                    "secondary-fixed": "#e2e2e2",
+                    "surface-container-low": "#f6f3f2",
+                    "primary-fixed": "#e2e2e2",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "tertiary-fixed": "#e2e2e2",
+                    "background": "#fcf8f8",
+                    "on-surface-variant": "#444748",
+                    "inverse-on-surface": "#f4f0ef",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#747878",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#5f6161",
+                    "tertiary-container": "#ffffff",
+                    "surface-container-high": "#ebe7e7",
+                    "on-tertiary-container": "#757676",
+                    "on-background": "#1c1b1b",
+                    "primary-fixed-dim": "#c6c6c7",
+                    "primary": "#5d5f5f",
+                    "surface-container": "#f1edec",
+                    "on-primary-container": "#747676",
+                    "surface-tint": "#5d5f5f",
+                    "on-secondary-fixed-variant": "#454747",
+                    "on-secondary-fixed": "#1a1c1c",
+                    "primary-container": "#ffffff",
+                    "tertiary": "#5d5f5f",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#454747",
+                    "surface-bright": "#fcf8f8",
+                    "surface-dim": "#ddd9d9",
+                    "surface": "#fcf8f8",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c7",
+                    "secondary": "#5d5f5f",
+                    "inverse-surface": "#313030",
+                    "surface-variant": "#e5e2e1",
+                    "outline-variant": "#c4c7c8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-tablet": "40px",
+                    "gutter": "32px",
+                    "container-max": "1440px",
+                    "section-gap": "160px",
+                    "margin-mobile": "24px",
+                    "margin-desktop": "80px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Hanken Grotesk"],
+                    "display-xl-mobile": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-xl": ["Hanken Grotesk"],
+                    "body-sm": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "display-xl-mobile": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-xl": ["80px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                    "body-sm": ["15px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.2em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        body.is-yellow {
+            background-color: #FFE680 !important;
+        }
+        body.is-yellow .grayscale {
+            filter: none !important;
+        }
+        #cta-verb {
+            display: inline-block;
+            will-change: transform, opacity;
+            transition: transform 180ms ease, opacity 180ms ease;
+        }
+        #cta-verb.is-out {
+            transform: translateY(14px);
+            opacity: 0;
+        }
+        #cta-verb.is-pre-in {
+            transform: translateY(-14px);
+            opacity: 0;
+        }
+        .hero-reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            filter: blur(6px);
+            transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1), opacity 900ms ease, filter 900ms ease;
+        }
+        .hero-ready .hero-reveal {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+        .hero-ready .hero-reveal[data-d="1"] { transition-delay: 90ms; }
+        .hero-ready .hero-reveal[data-d="2"] { transition-delay: 170ms; }
+        .hero-ready .hero-reveal[data-d="3"] { transition-delay: 250ms; }
+        .hero-ready .hero-reveal[data-d="4"] { transition-delay: 330ms; }
+        .hero-grid {
+            position: absolute;
+            inset: -12%;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(1.02);
+            transition: opacity 900ms ease, transform 1200ms cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 0;
+        }
+        .hero-grid::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(90deg, rgba(28, 27, 27, 0.10) 0 1px, transparent 1px 28px),
+                repeating-linear-gradient(0deg, rgba(28, 27, 27, 0.10) 0 1px, transparent 1px 28px);
+            transform: translate3d(0, 0, 0);
+            opacity: 0.9;
+        }
+        .hero-grid::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 34% 70%, rgba(255, 230, 128, 0.55) 0%, rgba(255, 230, 128, 0.18) 18%, rgba(255, 230, 128, 0) 38%);
+            mix-blend-mode: multiply;
+            filter: blur(10px);
+        }
+        .hero-ready .hero-grid {
+            opacity: 1;
+            transform: scale(1);
+            animation: heroGridFloat 7000ms ease-in-out 1100ms infinite;
+        }
+        .hero-ready .hero-grid::before {
+            animation: heroGridMove 6400ms linear 0ms infinite;
+        }
+        @keyframes heroGridMove {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 180px 0, 0 180px; }
+        }
+        @keyframes heroGridFloat {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(0, -10px, 0) scale(1.01); }
+        }
+        .hero-photo {
+            transform: scale(1.06);
+            transition: transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hero-ready .hero-photo {
+            transform: scale(1);
+        }
+        .hero-cta {
+            position: relative;
+            display: inline-flex;
+            isolation: isolate;
+            overflow: visible;
+            box-shadow: none;
+        }
+        .cta-glow {
+            position: relative;
+            display: inline-flex;
+            isolation: isolate;
+            overflow: visible;
+            will-change: transform, opacity;
+        }
+        .cta-glow-wrap {
+            position: relative;
+            display: inline-block;
+            isolation: isolate;
+        }
+        .cta-glow-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -34px -54px;
+            border-radius: 9999px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 230, 128, 0.95) 0%, rgba(255, 230, 128, 0.30) 40%, rgba(255, 230, 128, 0) 72%);
+            filter: blur(18px);
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 700ms ease 360ms, transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 360ms;
+            animation: ctaGlowPulse 4200ms ease-in-out 1400ms infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .cta-glow {
+            position: relative;
+            z-index: 10;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cta-glow {
+                animation: none !important;
+            }
+            .cta-glow-wrap::before {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes ctaGlowPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+        .hero-cta > span {
+            position: relative;
+        }
+        .hero-ready .hero-cta {
+            animation: heroCtaGlow 4200ms ease-in-out 1400ms infinite;
+        }
+        @keyframes heroCtaGlow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 230, 128, 0.0), 0 18px 70px rgba(255, 230, 128, 0.0);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(255, 230, 128, 0.22), 0 22px 90px rgba(255, 230, 128, 0.22);
+            }
+        }
+    </style>
+</head>
+ <body class="bg-surface text-on-surface transition-colors duration-700">
+ <div id="yellow-overlay" class="fixed inset-0 pointer-events-none z-0">
+  <div id="yellow-overlay-circle" class="absolute rounded-full bg-[#FFE680] scale-0 transition-transform duration-700 ease-in-out"></div>
+ </div>
+ <div class="relative z-10">
+ <!-- TopAppBar -->
+ <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/80 backdrop-blur-sm border-b border-outline-variant">
+  <a id="brand-logo" class="inline-flex items-center" href="./index.html" aria-label="Zur Startseite">
+   <iframe src="https://lottie.host/embed/4e016d65-71cd-4c9e-8438-30cd0c93b358/IypA0qhQdE.lottie" class="w-14 h-14 md:w-16 md:h-16 border-0 pointer-events-none" title="Lottie animation" loading="lazy"></iframe>
+  </a>
+  <div class="hidden md:flex items-center gap-gutter">
+   <a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1 transition-all duration-300 ease-in-out active:translate-y-px" href="./index.html">Arbeiten</a>
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./about.html">Über mich</a>
+  </div>
+  <button class="hidden md:inline-flex bg-on-surface text-surface font-label-caps text-label-caps px-6 py-3 transition-opacity hover:opacity-90 active:opacity-80">KONTAKT</button>
+ <div class="md:hidden">
+  <button id="mobile-menu-button" class="inline-flex items-center justify-center" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" type="button">
+   <span class="material-symbols-outlined text-on-surface">menu</span>
+  </button>
+ </div>
+ </nav>
+ <div id="mobile-menu" class="hidden md:hidden fixed top-20 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant px-margin-mobile py-6">
+  <div class="flex flex-col gap-6">
+   <a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./index.html">Arbeiten</a>
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./about.html">Über mich</a>
+   <a class="bg-on-surface text-surface font-label-caps text-label-caps px-6 py-3 w-fit active:opacity-80 transition-opacity" href="mailto:hello@studio.com">Schreib mir</a>
+  </div>
+ </div>
+ <main>
+ <!-- Hero Section -->
+ <section id="hero" class="relative overflow-hidden min-h-screen flex flex-col justify-center px-margin-mobile md:px-margin-desktop pt-20">
+ <div class="hero-grid" aria-hidden="true"></div>
+ <div class="max-w-screen-xl">
+ <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-gutter">
+ <div class="flex-1">
+ <p class="font-label-caps text-label-caps text-primary mb-6 tracking-[0.3em] hero-reveal" data-d="1">Thomas Lemmenmeier</p>
+ <h1 class="font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface leading-none mb-12 hero-reveal" data-d="2">
+                     Theorie kennen.<br class="hidden md:block"/> Praxis können.
+                 </h1>
+<div class="w-24 h-px bg-outline-variant mb-12 hero-reveal" data-d="3"></div>
+<div class="flex flex-col md:flex-row md:items-center gap-gutter">
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl hero-reveal" data-d="3">
+                        Ich bin Thomas. Marketing-Student und Media Creator. Was mich antreibt: das Verbinden von strategischem Denken mit echtem Content-Handwerk.
+                    </p>
+<div class="flex gap-4 mt-4 md:mt-0 hero-reveal" data-d="4">
+<a class="hero-cta bg-on-surface text-surface px-8 py-4 font-label-caps text-label-caps hover:bg-primary transition-colors" href="#arbeiten"><span>AUSGEWÄHLTE ARBEITEN</span></a>
+</div>
+</div>
+</div>
+ <div class="w-full md:w-[420px] lg:w-[520px] shrink-0 md:ml-auto hero-reveal" data-d="2">
+ <div class="relative">
+  <img class="w-full aspect-square object-cover grayscale relative hero-photo" src="./bilder/Thomas.jpg" alt="Thomas Lemmenmeier" loading="lazy"/>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+<!-- Feature Work: Bento Grid -->
+<section id="arbeiten" class="px-margin-mobile md:px-margin-desktop py-section-gap border-t border-outline-variant">
+<div class="flex justify-between items-end mb-16">
+<div>
+<p class="font-label-caps text-label-caps text-primary mb-4">AUSGEWÄHLTE ARBEITEN</p>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">2022 — 2024 Projects</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Case Study 1 -->
+<a class="md:col-span-8 group cursor-pointer block" href="./kulturrunde.html">
+<div class="relative aspect-[16/9] overflow-hidden bg-surface-container-low mb-6">
+<img alt="Kulturrunde" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="./bilder/header_Kulturrunde.JPG" loading="lazy"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Kulturrunde in die Region</h3>
+</div>
+<span class="font-label-caps text-label-caps text-outline">Migros Genossenschaft Ostschweiz</span>
+</div>
+</a>
+<!-- Case Study 2 -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-container-low mb-6">
+<img alt="Brand Narrative for AI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An abstract close-up of high-end architectural lines in a modern building, featuring glass and brushed steel. The composition is geometric and minimalist, with a cool-toned daylight filtering through. The image evokes a sense of structure, transparency, and precision, aligning with a high-end corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDbPW50PttG2i5fDYQctHWqIIfxMLuCh9IBvL_BbdYuep4ADlxLDNDXDIrbYthKUluu4oiUAduQjza80JJ2lHaRII7rXOV9nF2EneCW8aWIiIG9hPw9Cys2K-iiErssoYho-Z4ycqNaEFWhtMi5RJcv48w5BTK9Xra4liZOCxaU1fOju6WT65Sc5FucPWLKCs5J08OS6-OUGipmhNigmZhpLuq8NwWm6FJFGlAZHisqBOEf7e9WS-y4vQAjbD4r47xUrKPwZa1BChF"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Narrative Core</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Positionierung eines AI-first Ventures für Series B.</p>
+</div>
+</div>
+<!-- Case Study 3 -->
+<div class="md:col-span-5 group cursor-pointer">
+<div class="relative aspect-square overflow-hidden bg-surface-container-low mb-6">
+<img alt="Performance Audit" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="High-resolution data visualizations displayed on a modern, bezel-less screen. The charts are clean, using a minimal palette of charcoal, white, and subtle primary accents. The shot is angled to emphasize the sleekness of the technology and the clarity of information, reflecting a data-driven marketing approach in a bright, airy office setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-7NJyuRX5ptAwjpAOAQ4zNz2Y_BzKSNmGlS62dz_GBsinjWE8pSlOz3yfa4TfJVUbrXsHDwCJEsPG2R5gEEC1N7t2HR2aJ6l0Up6Qnb9VxKw9YuGBZdqinqzSXPZ4yuOsm4dK_rnByUX8d7wljwvDTOIklAhxuFmhFxmSg4EZFhub8CNexazriJiwSPofwnf0sEHkZUuo0525OaonjJp39eUSduboi5C-hfriXMQQFME16idE2obH0bSvES5avlSmY310rlpBV5v6"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Data Integrity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Analytics in umsetzbare User Journeys übersetzen.</p>
+</div>
+</div>
+<!-- Case Study 4 -->
+<div class="md:col-span-7 group cursor-pointer">
+<div class="relative aspect-[16/10] overflow-hidden bg-surface-container-low mb-6">
+<img alt="Content Ecosystem" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A spacious, open-plan architectural studio with floor-to-ceiling windows and minimalist furniture. The room is flooded with soft, indirect sunlight, creating a calm and professional atmosphere. The design emphasizes order, focus, and creativity, utilizing a monochrome color scheme that highlights the sophisticated simplicity of the environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPGnUz13M3DbINGYUolyR-ZpA7VWFmcBs1hQIqSMB-ZP44ZcB2UaLQdDuvlx6KBZK1SdJ-QA8x_sw95XxzdSMD30MK7bK0QxsnondOkxJuxdSRkGGagNKpNqIrjOLRazofacDuOZNDF-PThTucNV3KTDP_7CJzsOkhC7kWnLwq7leITgA6KOly3uiKmpoxb68WRW4CcGQRS8GJGQymi7ag7Ud9mmXUMliDTRmxdaRmCldqYPY729Hdfj8J7SqJZ6Hwi2i6Zun7zAfh"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Content Pillar</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Aufbau einer nachhaltigen Content-Engine für SaaS.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap text-center">
+<h2 class="font-display-xl text-display-xl-mobile md:text-display-xl mb-12">Lass uns etwas zusammen<br/><span id="cta-verb">erreichen</span>.</h2>
+<span class="cta-glow-wrap"><a id="cta-start-project" class="cta-glow inline-block bg-on-surface text-surface font-label-caps text-label-caps px-12 py-6 hover:bg-primary transition-colors tracking-widest" href="./contact.html">Schreib mir</a></span>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant">
+<div class="font-label-caps text-label-caps font-bold text-on-surface mb-8 md:mb-0">
+            &copy; 2024 MINIMALIST PORTFOLIO. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex gap-10">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="./index.html">Archiv</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="./about.html">Journal</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-200" href="./contact.html">Impressum</a>
+</div>
+<div class="flex gap-6 mt-8 md:mt-0">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">circle</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">change_history</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">square</span>
+</a>
+</div>
+</footer>
+<script>
+  (function () {
+   var button = document.getElementById('mobile-menu-button');
+   var menu = document.getElementById('mobile-menu');
+
+   if (!button || !menu) return;
+
+   function setOpen(isOpen) {
+    menu.classList.toggle('hidden', !isOpen);
+    button.setAttribute('aria-expanded', String(isOpen));
+   }
+
+   button.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var isOpen = !menu.classList.contains('hidden');
+    setOpen(!isOpen);
+   });
+
+   document.addEventListener('click', function (e) {
+    if (menu.classList.contains('hidden')) return;
+    if (menu.contains(e.target) || button.contains(e.target)) return;
+    setOpen(false);
+   });
+
+   document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setOpen(false);
+   });
+  })();
+</script>
+<script>
+ (function () {
+  var logo = document.getElementById('brand-logo');
+  var circle = document.getElementById('yellow-overlay-circle');
+
+  if (!logo || !circle) return;
+
+  function positionCircleAt(cx, cy) {
+   var size = Math.ceil(Math.max(window.innerWidth, window.innerHeight) * 2.2);
+   circle.style.width = size + 'px';
+   circle.style.height = size + 'px';
+   circle.style.left = (cx - size / 2) + 'px';
+   circle.style.top = (cy - size / 2) + 'px';
+  }
+
+  function setYellow(isYellow) {
+   document.body.classList.toggle('is-yellow', isYellow);
+   circle.classList.toggle('scale-100', isYellow);
+   try {
+    if (!isYellow) window.localStorage.removeItem('yellowUntil');
+   } catch (err) {}
+  }
+
+  function expireYellowWithAnimation() {
+   if (!document.body.classList.contains('is-yellow')) {
+    setYellow(false);
+    return;
+   }
+
+   try {
+    window.localStorage.removeItem('yellowUntil');
+   } catch (err) {}
+
+   // Fade the page back to normal. Hide the circle immediately (no shrink animation).
+   circle.classList.add('transition-none');
+   circle.classList.remove('scale-100');
+   circle.classList.add('scale-0');
+   void circle.offsetWidth;
+   window.requestAnimationFrame(function () {
+    circle.classList.remove('transition-none');
+   });
+
+   document.body.classList.remove('is-yellow');
+   window.setTimeout(function () {
+    setYellow(false);
+   }, 720);
+  }
+
+  function animateToYellowFromElement(el) {
+   var rect = el.getBoundingClientRect();
+   var cx = rect.left + rect.width / 2;
+   var cy = rect.top + rect.height / 2;
+   positionCircleAt(cx, cy);
+
+   document.body.classList.add('is-yellow');
+   try {
+    window.localStorage.setItem('yellowUntil', String(Date.now() + 5000));
+   } catch (err) {}
+
+   circle.classList.remove('transition-none');
+   circle.classList.remove('scale-100');
+   void circle.offsetWidth;
+   circle.classList.add('scale-100');
+  }
+
+  function restorePersistedYellow() {
+   var untilRaw = null;
+   try {
+    untilRaw = window.localStorage.getItem('yellowUntil');
+   } catch (err) {}
+   var until = untilRaw ? Number(untilRaw) : 0;
+   if (!until || Number.isNaN(until)) return;
+   var remaining = until - Date.now();
+   if (remaining <= 0) {
+    try { window.localStorage.removeItem('yellowUntil'); } catch (err) {}
+    return;
+   }
+
+   document.body.classList.add('transition-none');
+   circle.classList.add('transition-none');
+   positionCircleAt(window.innerWidth / 2, window.innerHeight / 2);
+   document.body.classList.add('is-yellow');
+   circle.classList.add('scale-100');
+   window.requestAnimationFrame(function () {
+    document.body.classList.remove('transition-none');
+    circle.classList.remove('transition-none');
+   });
+
+   window.setTimeout(function () {
+    expireYellowWithAnimation();
+   }, remaining);
+  }
+
+  try {
+   restorePersistedYellow();
+  } catch (err) {}
+
+  var cta = document.getElementById('cta-start-project');
+  if (cta) {
+   cta.addEventListener('click', function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    animateToYellowFromElement(cta);
+    var href = cta.getAttribute('href');
+    if (href) {
+     window.setTimeout(function () {
+      window.location.href = href;
+     }, 450);
+    }
+   });
+  }
+
+  var contactLinks = document.querySelectorAll('a[href="./contact.html"], a[href="contact.html"]');
+  for (var j = 0; j < contactLinks.length; j++) {
+   (function (link) {
+    if (link === cta) return;
+    link.addEventListener('click', function (e) {
+     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+     e.preventDefault();
+     animateToYellowFromElement(link);
+     var href = link.getAttribute('href');
+     if (href) {
+      window.setTimeout(function () {
+       window.location.href = href;
+      }, 450);
+     }
+    });
+   })(contactLinks[j]);
+  }
+ })();
+</script>
+<script>
+ (function () {
+  var el = document.getElementById('cta-verb');
+  if (!el) return;
+
+  var reduceMotion = false;
+  try {
+   reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (err) {}
+
+  var words = ['erledigen', 'erreichen', 'schaffen', 'tun', 'gestalten', 'aufbauen', 'verändern', 'bewegen'];
+  var i = 0;
+
+  function setWord(nextWord) {
+   el.textContent = nextWord;
+  }
+
+  function rotate() {
+   i = (i + 1) % words.length;
+   var next = words[i];
+
+   if (reduceMotion) {
+    setWord(next);
+    return;
+   }
+
+   el.classList.add('is-out');
+   window.setTimeout(function () {
+    el.classList.remove('is-out');
+    el.classList.add('is-pre-in');
+    setWord(next);
+    window.requestAnimationFrame(function () {
+     el.classList.remove('is-pre-in');
+    });
+   }, 190);
+  }
+
+  window.setInterval(rotate, 1100);
+ })();
+</script>
+<script>
+ (function () {
+  var hero = document.getElementById('hero');
+  if (!hero) return;
+
+  var reduceMotion = false;
+  try {
+   reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (err) {}
+
+  if (reduceMotion) {
+   hero.classList.add('hero-ready');
+   return;
+  }
+
+  window.setTimeout(function () {
+   hero.classList.add('hero-ready');
+  }, 60);
+ })();
+</script>
+</div>
+</body>
+</html>
