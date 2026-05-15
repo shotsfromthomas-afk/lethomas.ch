@@ -142,6 +142,14 @@
         .hero-ready .hero-reveal[data-d="2"] { transition-delay: 170ms; }
         .hero-ready .hero-reveal[data-d="3"] { transition-delay: 250ms; }
         .hero-ready .hero-reveal[data-d="4"] { transition-delay: 330ms; }
+
+        .type-char {
+            opacity: 0;
+            transition: opacity 120ms linear;
+        }
+        .type-char.is-on {
+            opacity: 1;
+        }
         .hero-grid {
             position: absolute;
             inset: -12%;
@@ -292,7 +300,7 @@
  <!-- Hero Section -->
  <section id="hero" class="relative overflow-hidden min-h-screen flex flex-col justify-center px-margin-mobile md:px-margin-desktop pt-20">
  <div class="hero-grid" aria-hidden="true"></div>
- <div class="max-w-screen-xl">
+ <div class="max-w-screen-xl relative z-10">
  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-gutter">
  <div class="flex-1 order-2 md:order-1">
  <p class="font-label-caps text-label-caps text-primary mb-6 tracking-[0.3em] hero-reveal" data-d="1">Thomas Lemmenmeier</p>
@@ -301,9 +309,10 @@
                  </h1>
 <div class="hidden md:block w-24 h-px bg-outline-variant mb-12 hero-reveal" data-d="3"></div>
 <div class="flex flex-col md:flex-row md:items-center gap-gutter">
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl hero-reveal" data-d="3">
+<p class="md:hidden font-body-lg text-body-lg text-on-surface-variant max-w-xl hero-reveal" data-d="3">
                         Ich bin Thomas. Marketing-Student und Media Creator. Was mich antreibt: das Verbinden von strategischem Denken mit echtem Content-Handwerk.
                     </p>
+<p id="hero-type" class="hidden md:block font-body-lg text-body-lg text-on-surface-variant max-w-xl" data-text="Ich bin Thomas. Marketing-Student und Media Creator. Was mich antreibt: das Verbinden von strategischem Denken mit echtem Content-Handwerk." aria-label="Ich bin Thomas. Marketing-Student und Media Creator. Was mich antreibt: das Verbinden von strategischem Denken mit echtem Content-Handwerk."></p>
 <div class="flex gap-4 mt-4 md:mt-0 hero-reveal" data-d="4">
 <a class="hero-cta bg-on-surface text-surface px-8 py-4 font-label-caps text-label-caps hover:bg-primary transition-colors" href="#arbeiten"><span>AUSGEWÄHLTE ARBEITEN</span></a>
 </div>
@@ -327,7 +336,7 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
 <!-- Case Study 1 -->
-<a class="md:col-span-8 group cursor-pointer block" href="./kulturrunde.html">
+<a class="md:col-span-6 group cursor-pointer block" href="./kulturrunde.html">
 <div class="relative aspect-[16/9] overflow-hidden bg-surface-container-low mb-6">
 <img alt="Kulturrunde" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="./bilder/header_Kulturrunde.JPG" loading="lazy"/>
 </div>
@@ -339,35 +348,31 @@
 </div>
 </a>
 <!-- Case Study 2 -->
-<div class="md:col-span-4 group cursor-pointer">
+<a class="md:col-span-3 group cursor-pointer block" href="./employer-branding-migros-industrie.html">
 <div class="relative aspect-[4/5] overflow-hidden bg-surface-container-low mb-6">
-<img alt="Brand Narrative for AI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An abstract close-up of high-end architectural lines in a modern building, featuring glass and brushed steel. The composition is geometric and minimalist, with a cool-toned daylight filtering through. The image evokes a sense of structure, transparency, and precision, aligning with a high-end corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDbPW50PttG2i5fDYQctHWqIIfxMLuCh9IBvL_BbdYuep4ADlxLDNDXDIrbYthKUluu4oiUAduQjza80JJ2lHaRII7rXOV9nF2EneCW8aWIiIG9hPw9Cys2K-iiErssoYho-Z4ycqNaEFWhtMi5RJcv48w5BTK9Xra4liZOCxaU1fOju6WT65Sc5FucPWLKCs5J08OS6-OUGipmhNigmZhpLuq8NwWm6FJFGlAZHisqBOEf7e9WS-y4vQAjbD4r47xUrKPwZa1BChF"/>
+ <img alt="Employer Branding Migros Industrie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="./bilder/EmBr_Instanhaltungstechniker_Micarna_16%209_long_de.jpeg" loading="lazy"/>
 </div>
+<div class="flex justify-between items-start">
 <div>
-<h3 class="font-headline-md text-headline-md mb-2">Narrative Core</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Positionierung eines AI-first Ventures für Series B.</p>
+<h3 class="font-headline-md text-headline-md mb-2">Employer Branding</h3>
 </div>
+<span class="font-label-caps text-label-caps text-outline">Migros Industrie</span>
 </div>
+</a>
 <!-- Case Study 3 -->
-<div class="md:col-span-5 group cursor-pointer">
+<a class="md:col-span-3 group cursor-pointer block" href="./bildlokal.html">
 <div class="relative aspect-square overflow-hidden bg-surface-container-low mb-6">
-<img alt="Performance Audit" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="High-resolution data visualizations displayed on a modern, bezel-less screen. The charts are clean, using a minimal palette of charcoal, white, and subtle primary accents. The shot is angled to emphasize the sleekness of the technology and the clarity of information, reflecting a data-driven marketing approach in a bright, airy office setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-7NJyuRX5ptAwjpAOAQ4zNz2Y_BzKSNmGlS62dz_GBsinjWE8pSlOz3yfa4TfJVUbrXsHDwCJEsPG2R5gEEC1N7t2HR2aJ6l0Up6Qnb9VxKw9YuGBZdqinqzSXPZ4yuOsm4dK_rnByUX8d7wljwvDTOIklAhxuFmhFxmSg4EZFhub8CNexazriJiwSPofwnf0sEHkZUuo0525OaonjJp39eUSduboi5C-hfriXMQQFME16idE2obH0bSvES5avlSmY310rlpBV5v6"/>
+ <video class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" autoplay muted loop playsinline preload="metadata" aria-label="Bildlokal Animation">
+  <source src="./videos/bildlokal.mp4" type="video/mp4" />
+ </video>
 </div>
+<div class="flex justify-between items-start">
 <div>
-<h3 class="font-headline-md text-headline-md mb-2">Data Integrity</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Analytics in umsetzbare User Journeys übersetzen.</p>
+<h3 class="font-headline-md text-headline-md mb-2">Bildlokal</h3>
 </div>
+<span class="font-label-caps text-label-caps text-outline">2026</span>
 </div>
-<!-- Case Study 4 -->
-<div class="md:col-span-7 group cursor-pointer">
-<div class="relative aspect-[16/10] overflow-hidden bg-surface-container-low mb-6">
-<img alt="Content Ecosystem" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A spacious, open-plan architectural studio with floor-to-ceiling windows and minimalist furniture. The room is flooded with soft, indirect sunlight, creating a calm and professional atmosphere. The design emphasizes order, focus, and creativity, utilizing a monochrome color scheme that highlights the sophisticated simplicity of the environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPGnUz13M3DbINGYUolyR-ZpA7VWFmcBs1hQIqSMB-ZP44ZcB2UaLQdDuvlx6KBZK1SdJ-QA8x_sw95XxzdSMD30MK7bK0QxsnondOkxJuxdSRkGGagNKpNqIrjOLRazofacDuOZNDF-PThTucNV3KTDP_7CJzsOkhC7kWnLwq7leITgA6KOly3uiKmpoxb68WRW4CcGQRS8GJGQymi7ag7Ud9mmXUMliDTRmxdaRmCldqYPY729Hdfj8J7SqJZ6Hwi2i6Zun7zAfh"/>
-</div>
-<div>
-<h3 class="font-headline-md text-headline-md mb-2">Content Pillar</h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Aufbau einer nachhaltigen Content-Engine für SaaS.</p>
-</div>
-</div>
+</a>
 </div>
 </section>
 <!-- CTA Section -->
@@ -603,6 +608,122 @@
   window.setTimeout(function () {
    hero.classList.add('hero-ready');
   }, 60);
+ })();
+</script>
+
+<script>
+ (function () {
+  var el = document.getElementById('hero-type');
+  if (!el) return;
+
+  var isDesktop = false;
+  try {
+   isDesktop = window.matchMedia && window.matchMedia('(min-width: 768px)').matches;
+  } catch (err) {}
+  if (!isDesktop) return;
+
+  var reduceMotion = false;
+  try {
+   reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (err) {}
+
+  var fullText = el.getAttribute('data-text') || '';
+  if (reduceMotion) {
+   el.textContent = fullText;
+   return;
+  }
+
+  try {
+   window.scrollTo(0, 0);
+  } catch (err) {}
+
+  el.textContent = '';
+  var frag = document.createDocumentFragment();
+  for (var i = 0; i < fullText.length; i++) {
+   var ch = fullText[i];
+   var span = document.createElement('span');
+   span.className = 'type-char';
+   span.textContent = ch;
+   frag.appendChild(span);
+  }
+  el.appendChild(frag);
+
+  var chars = el.querySelectorAll('.type-char');
+  var idx = 0;
+  var acc = 0;
+  var done = false;
+  var lastScrollY = 0;
+
+  function revealNext(count) {
+   for (var k = 0; k < count; k++) {
+    if (idx >= chars.length) {
+     finish();
+     return;
+    }
+    chars[idx].classList.add('is-on');
+    idx++;
+   }
+  }
+
+  function finish() {
+   if (done) return;
+   done = true;
+   removeListeners();
+  }
+
+  function shouldIntercept() {
+   if (done) return false;
+   if (window.scrollY > 0) return false;
+   return true;
+  }
+
+  function onWheel(e) {
+   if (!shouldIntercept()) return;
+   if (!e) return;
+   var dy = e.deltaY || 0;
+   if (dy === 0) return;
+   e.preventDefault();
+
+   acc += Math.abs(dy);
+   var step = 10;
+   var next = Math.floor(acc / step);
+   if (next > 0) {
+    acc = acc - next * step;
+    revealNext(next);
+   }
+
+   if (!done) {
+    try { window.scrollTo(0, 0); } catch (err) {}
+   }
+  }
+
+  function onKeyDown(e) {
+   if (!shouldIntercept()) return;
+   var k = e && e.key;
+   if (k !== 'ArrowDown' && k !== 'PageDown' && k !== ' ' && k !== 'Spacebar') return;
+   e.preventDefault();
+   revealNext(2);
+   if (!done) {
+    try { window.scrollTo(0, 0); } catch (err) {}
+   }
+  }
+
+  function onScroll() {
+   if (!shouldIntercept()) return;
+   if (window.scrollY !== 0) {
+    try { window.scrollTo(0, 0); } catch (err) {}
+   }
+  }
+
+  function removeListeners() {
+   window.removeEventListener('wheel', onWheel, { capture: true });
+   document.removeEventListener('keydown', onKeyDown);
+   window.removeEventListener('scroll', onScroll);
+  }
+
+  window.addEventListener('wheel', onWheel, { passive: false, capture: true });
+  document.addEventListener('keydown', onKeyDown);
+  window.addEventListener('scroll', onScroll, { passive: true });
  })();
 </script>
 </div>
