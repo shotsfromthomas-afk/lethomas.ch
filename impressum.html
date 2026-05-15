@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="de">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Impressum • Le Thomas</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet" />
+ <style>
+  :root {
+   --margin-mobile: 20px;
+   --margin-desktop: 48px;
+   --container-max: 1240px;
+   --section-gap: 96px;
+   --gutter: 32px;
+  }
+
+  .px-margin-mobile { padding-left: var(--margin-mobile); padding-right: var(--margin-mobile); }
+
+  @media (min-width: 768px) {
+   .md\:px-margin-desktop { padding-left: var(--margin-desktop); padding-right: var(--margin-desktop); }
+  }
+
+  .max-w-container-max { max-width: var(--container-max); }
+  .py-section-gap { padding-top: var(--section-gap); padding-bottom: var(--section-gap); }
+  .gap-gutter { gap: var(--gutter); }
+
+  .font-label-caps { font-family: "Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; font-size: 12px; line-height: 1; }
+  .font-body-lg { font-family: "Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial; font-weight: 400; font-size: 18px; line-height: 1.6; }
+  .font-headline-lg { font-family: "Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial; font-weight: 500; font-size: 40px; line-height: 1.2; letter-spacing: -0.01em; }
+  .text-headline-lg-mobile { font-size: 32px; line-height: 1.2; }
+  .text-display-xl-mobile { font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 300; }
+
+  @media (min-width: 768px) {
+   .md\:text-headline-lg { font-size: 40px; line-height: 1.2; }
+  }
+
+  .bg-surface { background: #F7F6F2; }
+  .text-on-surface { color: #111111; }
+  .text-on-surface-variant { color: rgba(17,17,17,0.72); }
+  .border-outline-variant { border-color: rgba(17,17,17,0.12); }
+  .bg-on-surface { background: #111111; }
+  .text-surface { color: #F7F6F2; }
+
+  body.is-yellow { background: #FFE680; }
+ </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-[#FFE680] selection:text-on-surface transition-colors duration-700">
+ <div id="yellow-overlay" class="fixed inset-0 pointer-events-none z-[9999]">
+  <div id="yellow-overlay-circle" class="absolute rounded-full bg-[#FFE680] scale-0 transition-transform duration-700 ease-in-out z-[9999]"></div>
+ </div>
+
+ <div class="relative z-10">
+  <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/80 backdrop-blur-sm border-b border-outline-variant">
+   <a id="brand-logo" class="inline-flex items-center" href="./index.html" aria-label="Zur Startseite">
+    <iframe src="https://lottie.host/embed/4e016d65-71cd-4c9e-8438-30cd0c93b358/IypA0qhQdE.lottie" class="w-14 h-14 md:w-16 md:h-16 border-0 pointer-events-none" title="Lottie animation" loading="lazy"></iframe>
+   </a>
+   <nav class="hidden md:flex items-center gap-10">
+    <a class="font-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./index.html">Arbeiten</a>
+    <a class="font-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./about.html">Über mich</a>
+   </nav>
+   <a class="hidden md:inline-flex bg-on-surface text-surface font-label-caps px-6 py-3 transition-opacity hover:opacity-90 active:opacity-80" href="./contact.html">Schreib mir</a>
+   <div class="md:hidden">
+    <button id="mobile-menu-button" class="inline-flex items-center justify-center" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" type="button">
+     <span class="material-symbols-outlined text-on-surface">menu</span>
+    </button>
+   </div>
+  </header>
+
+  <div id="mobile-menu" class="hidden md:hidden fixed top-20 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant px-margin-mobile md:px-margin-desktop py-6">
+   <div class="flex flex-col gap-6">
+    <a class="font-label-caps text-on-surface-variant hover:opacity-50 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./index.html">Arbeiten</a>
+    <a class="font-label-caps text-on-surface-variant hover:opacity-50 w-fit active:translate-y-px transition-all duration-300 ease-in-out" href="./about.html">Über mich</a>
+    <a class="bg-on-surface text-surface font-label-caps px-6 py-3 w-fit active:opacity-80 transition-opacity" href="./contact.html">Schreib mir</a>
+   </div>
+  </div>
+
+  <main class="pt-32 md:pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+   <section class="mb-16 md:mb-24">
+    <p class="font-label-caps text-on-surface-variant mb-6 tracking-[0.3em]">RECHTLICHES</p>
+    <h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg leading-tight">Impressum</h1>
+   </section>
+
+   <section class="grid grid-cols-12 gap-gutter">
+    <div class="col-span-12 md:col-span-8">
+     <div class="space-y-10">
+      <div>
+       <h2 class="font-label-caps text-on-surface-variant mb-4">ANGABEN</h2>
+       <div class="font-body-lg text-on-surface-variant space-y-2">
+        <p>Thomas Lemmenmeier</p>
+        <p>Kolosseumstrasse 23</p>
+        <p>9008 St. Gallen</p>
+        <p>Schweiz</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+
+  <footer class="w-full px-margin-mobile md:px-margin-desktop py-20 flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant">
+   <div class="font-label-caps font-bold text-on-surface uppercase">&copy; 2026 LE THOMAS. ALLE RECHTE VORBEHALTEN.</div>
+   <div class="flex gap-gutter items-center">
+    <a class="font-label-caps text-on-surface-variant hover:text-on-surface transition-colors duration-200" href="./impressum.html">Impressum</a>
+   </div>
+  </footer>
+
+  <script>
+   (function () {
+    var button = document.getElementById('mobile-menu-button');
+    var menu = document.getElementById('mobile-menu');
+    if (!button || !menu) return;
+
+    function setOpen(isOpen) {
+     menu.classList.toggle('hidden', !isOpen);
+     button.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    button.addEventListener('click', function (e) {
+     e.stopPropagation();
+     var isOpen = !menu.classList.contains('hidden');
+     setOpen(!isOpen);
+    });
+
+    document.addEventListener('click', function (e) {
+     if (menu.classList.contains('hidden')) return;
+     if (menu.contains(e.target) || button.contains(e.target)) return;
+     setOpen(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+     if (e.key === 'Escape') setOpen(false);
+    });
+   })();
+  </script>
+ </div>
+</body>
+</html>
