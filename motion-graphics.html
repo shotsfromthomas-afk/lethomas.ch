@@ -104,6 +104,27 @@
     body { font-family: 'Hanken Grotesk', sans-serif; background-color: #fcf8f8; color: #1c1b1b; }
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 
+    body.is-yellow {
+      background-color: #FFE680 !important;
+    }
+    body.is-yellow .grayscale {
+      filter: none !important;
+    }
+    body.is-yellow .bg-surface-variant {
+      background-color: #EBCB59 !important;
+    }
+    body.is-yellow .bg-surface-container-low,
+    body.is-yellow .bg-surface-container {
+      background-color: #F4D86A !important;
+    }
+    body.is-yellow .bg-surface-container-high,
+    body.is-yellow .bg-surface-container-highest {
+      background-color: #EFCF5E !important;
+    }
+    body.is-yellow .border-outline-variant {
+      border-color: rgba(0, 0, 0, 0.14) !important;
+    }
+
     .motion-slider { position: relative; overflow: hidden; width: 100%; }
     .motion-track { display: flex; align-items: center; gap: 32px; width: max-content; animation: motionMarquee 22s linear infinite; will-change: transform; }
     .motion-slide { width: clamp(240px, 55vw, 720px); aspect-ratio: 16 / 9; flex: 0 0 auto; background: #1c1b1b; }
@@ -117,19 +138,21 @@
 </head>
 <body class="bg-background text-on-background selection:bg-primary-fixed-dim selection:text-on-surface transition-colors duration-700">
 <div class="relative z-10">
-<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 bg-surface/80 backdrop-blur-sm border-b border-outline-variant">
- <a id="brand-logo" class="inline-flex items-center" href="./index.html" aria-label="Zur Startseite">
-  <iframe src="https://lottie.host/embed/4e016d65-71cd-4c9e-8438-30cd0c93b358/IypA0qhQdE.lottie" class="w-14 h-14 md:w-16 md:h-16 border-0 pointer-events-none" title="Lottie animation" loading="lazy"></iframe>
- </a>
- <nav class="hidden md:flex items-center gap-10">
-  <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./index.html">Arbeiten</a>
-  <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./about.html">Über mich</a>
- </nav>
- <a class="hidden md:inline-flex bg-on-surface text-surface font-label-caps text-label-caps px-6 py-3 transition-all duration-300 hover:opacity-80" href="./contact.html">Schreib mir</a>
- <div class="md:hidden">
-  <button id="mobile-menu-button" class="inline-flex items-center justify-center" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" type="button">
-   <span class="material-symbols-outlined text-on-surface">menu</span>
-  </button>
+<header class="fixed top-0 left-0 w-full z-50 h-20 bg-surface/80 backdrop-blur-sm border-b border-outline-variant">
+ <div class="max-w-screen-xl mx-auto w-full h-full flex justify-between items-center px-margin-mobile md:px-margin-desktop">
+  <a id="brand-logo" class="inline-flex items-center" href="./index.html" aria-label="Zur Startseite">
+   <iframe src="https://lottie.host/embed/4e016d65-71cd-4c9e-8438-30cd0c93b358/IypA0qhQdE.lottie" class="w-14 h-14 md:w-16 md:h-16 border-0 pointer-events-none" title="Lottie animation" loading="lazy"></iframe>
+  </a>
+  <nav class="hidden md:flex items-center gap-10">
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./index.html">Arbeiten</a>
+   <a class="font-label-caps text-label-caps text-on-surface-variant hover:opacity-50 transition-all duration-300 ease-in-out active:translate-y-px" href="./about.html">Über mich</a>
+  </nav>
+  <a class="hidden md:inline-flex bg-on-surface text-surface font-label-caps text-label-caps px-6 py-3 transition-all duration-300 hover:opacity-80" href="./contact.html">Schreib mir</a>
+  <div class="md:hidden">
+   <button id="mobile-menu-button" class="inline-flex items-center justify-center" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" type="button">
+    <span class="material-symbols-outlined text-on-surface">menu</span>
+   </button>
+  </div>
  </div>
 </header>
 <div id="mobile-menu" class="hidden md:hidden fixed top-20 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-outline-variant px-margin-mobile md:px-margin-desktop py-6">
@@ -141,10 +164,12 @@
 </div>
 
 <main>
- <section class="w-full h-screen relative overflow-hidden bg-surface">
+ <section class="w-full h-screen relative overflow-hidden bg-[#FFD84D]">
+  <div class="absolute inset-0 flex items-center justify-center opacity-95">
+   <iframe src="https://lottie.host/embed/4e016d65-71cd-4c9e-8438-30cd0c93b358/IypA0qhQdE.lottie" class="w-64 h-64 md:w-80 md:h-80 border-0 pointer-events-none" title="Smile animation" loading="lazy"></iframe>
+  </div>
   <div class="absolute inset-0 flex flex-col justify-end px-margin-mobile md:px-margin-desktop pb-12 md:pb-16">
    <h1 class="font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface uppercase max-w-4xl leading-tight">Motion Graphics</h1>
-   <p class="font-label-caps text-label-caps text-on-surface-variant/80 mt-4 tracking-[0.3em]">COMING SOON</p>
   </div>
  </section>
 
@@ -153,7 +178,8 @@
    <span class="font-label-caps text-label-caps text-primary mb-8 block">ÜBER DAS PROJEKT</span>
    <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-12">Motion Graphics</h2>
    <div class="font-body-lg text-body-lg text-on-surface-variant space-y-6 leading-relaxed">
-    <p>Coming soon.</p>
+    <p>Motion Graphics faszinieren mich, weil man mit wenigen, gut durchdachten Ideen in kurzer Zeit viel kommunizieren kann. Mit Adobe After Effects setze ich Ideen visuell um und versuche, Inhalte klar, kreativ und aufmerksamkeitsstark darzustellen. Besonders spannend finde ich, wie Bewegung und Timing eine einfache Botschaft interessanter und einprägsamer machen können.</p>
+    <p>Diese Auswahl zeigt einige Eindrücke meiner Arbeiten.</p>
    </div>
   </div>
  </section>
@@ -190,7 +216,7 @@
  <!-- CTA Section -->
  <section class="px-margin-mobile md:px-margin-desktop py-section-gap text-center">
   <h2 class="font-display-xl text-display-xl-mobile md:text-display-xl mb-12">Lass uns etwas zusammen<br/><span id="cta-verb">erreichen</span>.</h2>
-  <span class="cta-glow-wrap"><a id="cta-start-project" class="cta-glow inline-block bg-on-surface text-surface font-label-caps text-label-caps px-12 py-6 hover:bg-primary transition-colors tracking-widest" href="./contact.html">Schreib mir</a></span>
+  <span class="cta-glow-wrap"><a id="cta-start-project" class="cta-glow inline-block bg-[#1c1b1b] text-[#fcf8f8] font-label-caps text-label-caps px-12 py-6 hover:bg-primary transition-colors tracking-widest" href="./about.html">Über mich</a></span>
  </section>
 </main>
 
