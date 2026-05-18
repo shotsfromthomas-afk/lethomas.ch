@@ -122,6 +122,12 @@
     body.is-yellow .bg-surface-container-highest {
       background-color: #EFCF5E !important;
     }
+    body.is-yellow .bg-surface {
+      background-color: #FFE680 !important;
+    }
+    body.is-yellow-opening footer.bg-surface {
+      background-color: transparent !important;
+    }
     body.is-yellow .border-outline-variant {
       border-color: rgba(0, 0, 0, 0.14) !important;
     }
@@ -347,6 +353,7 @@
 
   function setYellow(isYellow) {
    document.body.classList.toggle('is-yellow', isYellow);
+   if (!isYellow) document.body.classList.remove('is-yellow-opening');
    circle.classList.toggle('scale-100', isYellow);
    try {
     if (!isYellow) window.localStorage.removeItem('yellowUntil');
@@ -384,6 +391,10 @@
    positionCircleAt(cx, cy);
 
    document.body.classList.add('is-yellow');
+   document.body.classList.add('is-yellow-opening');
+   window.setTimeout(function () {
+    document.body.classList.remove('is-yellow-opening');
+   }, 720);
    try {
     window.localStorage.setItem('yellowUntil', String(Date.now() + 5000));
    } catch (err) {}

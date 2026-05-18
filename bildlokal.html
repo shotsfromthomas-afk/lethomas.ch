@@ -121,8 +121,74 @@
     body.is-yellow .bg-surface-container-highest {
       background-color: #EFCF5E !important;
     }
+    body.is-yellow .bg-surface {
+      background-color: #FFE680 !important;
+    }
+    body.is-yellow-opening footer.bg-surface {
+      background-color: transparent !important;
+    }
     body.is-yellow .border-outline-variant {
       border-color: rgba(0, 0, 0, 0.14) !important;
+    }
+
+    #cta-verb {
+      display: inline-block;
+      will-change: transform, opacity;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+    #cta-verb.is-out {
+      transform: translateY(14px);
+      opacity: 0;
+    }
+    #cta-verb.is-pre-in {
+      transform: translateY(-14px);
+      opacity: 0;
+    }
+
+    .cta-glow {
+      position: relative;
+      display: inline-flex;
+      isolation: isolate;
+      overflow: visible;
+      will-change: transform, opacity;
+    }
+    .cta-glow-wrap {
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
+    }
+    .cta-glow-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -34px -54px;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 230, 128, 0.95) 0%, rgba(255, 230, 128, 0.30) 40%, rgba(255, 230, 128, 0) 72%);
+      filter: blur(18px);
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 700ms ease 360ms, transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 360ms;
+      animation: ctaGlowPulse 4200ms ease-in-out 1400ms infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cta-glow {
+      position: relative;
+      z-index: 10;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cta-glow {
+        animation: none !important;
+      }
+      .cta-glow-wrap::before {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    @keyframes ctaGlowPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.06); opacity: 1; }
     }
 </style>
 </head>
@@ -264,6 +330,10 @@
    positionCircleAt(cx, cy);
 
    document.body.classList.add('is-yellow');
+   document.body.classList.add('is-yellow-opening');
+   window.setTimeout(function () {
+    document.body.classList.remove('is-yellow-opening');
+   }, 720);
    try {
     window.localStorage.setItem('yellowUntil', String(Date.now() + 5000));
    } catch (err) {}
@@ -276,6 +346,7 @@
 
   function setYellow(isYellow) {
    document.body.classList.toggle('is-yellow', isYellow);
+   if (!isYellow) document.body.classList.remove('is-yellow-opening');
    circle.classList.toggle('scale-100', isYellow);
    try {
     if (!isYellow) window.localStorage.removeItem('yellowUntil');
@@ -354,6 +425,47 @@
     }
    });
   }
+ })();
+</script>
+
+<script>
+ (function () {
+  var el = document.getElementById('cta-verb');
+  if (!el) return;
+
+  var reduceMotion = false;
+  try {
+   reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (err) {}
+
+  var words = ['erledigen', 'erreichen', 'schaffen', 'tun', 'gestalten', 'aufbauen', 'verändern', 'bewegen'];
+  var i = 0;
+
+  function setWord(nextWord) {
+   el.textContent = nextWord;
+  }
+
+  function rotate() {
+   i = (i + 1) % words.length;
+   var next = words[i];
+
+   if (reduceMotion) {
+    setWord(next);
+    return;
+   }
+
+   el.classList.add('is-out');
+   window.setTimeout(function () {
+    el.classList.remove('is-out');
+    el.classList.add('is-pre-in');
+    setWord(next);
+    window.requestAnimationFrame(function () {
+     el.classList.remove('is-pre-in');
+    });
+   }, 190);
+  }
+
+  window.setInterval(rotate, 1100);
  })();
 </script>
 </body>
