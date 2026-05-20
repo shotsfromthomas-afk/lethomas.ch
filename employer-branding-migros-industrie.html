@@ -287,19 +287,21 @@
     <div class="relative">
      <div id="video-swipe-area" class="video-area video-area-16x9" style="touch-action: pan-y;">
       <div id="video-stack" class="absolute inset-0">
-       <div class="video-layer absolute inset-0" data-video-index="0" data-aspect="16x9">
-        <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/uTe8i9s82H8?si=2sE2yb11a_0YU2Wo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+       <div class="video-layer absolute inset-0" data-video-index="0" data-aspect="9x16">
+        <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/sWhah4m-u-0?playsinline=1&modestbranding=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
        </div>
-       <div class="video-layer absolute inset-0" data-video-index="1" data-aspect="9x16">
-        <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/sWhah4m-u-0?autoplay=1&mute=1&controls=0&loop=1&playlist=sWhah4m-u-0&playsinline=1&modestbranding=1&rel=0&disablekb=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+       <div class="video-layer absolute inset-0" data-video-index="1" data-aspect="16x9">
+        <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/uTe8i9s82H8?si=2sE2yb11a_0YU2Wo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
        </div>
       </div>
 
-      <button id="video-prev" type="button" class="absolute -left-6 md:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 inline-flex items-center justify-center bg-surface/60 backdrop-blur-sm hover:bg-surface/80 transition-colors" aria-label="Previous video">
-       <span class="material-symbols-outlined text-on-surface">chevron_left</span>
+      <div id="video-touch-overlay" class="absolute inset-0 z-10 md:hidden" style="touch-action: pan-y;" aria-hidden="true"></div>
+
+      <button id="video-prev" type="button" class="absolute -left-10 md:-left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 inline-flex items-center justify-center bg-surface/75 backdrop-blur-sm hover:bg-surface/90 transition-colors rounded-full border border-outline-variant shadow-lg" aria-label="Previous video">
+       <span class="material-symbols-outlined text-on-surface text-3xl md:text-4xl">chevron_left</span>
       </button>
-      <button id="video-next" type="button" class="absolute -right-6 md:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 inline-flex items-center justify-center bg-surface/60 backdrop-blur-sm hover:bg-surface/80 transition-colors" aria-label="Next video">
-       <span class="material-symbols-outlined text-on-surface">chevron_right</span>
+      <button id="video-next" type="button" class="absolute -right-10 md:-right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 inline-flex items-center justify-center bg-surface/75 backdrop-blur-sm hover:bg-surface/90 transition-colors rounded-full border border-outline-variant shadow-lg" aria-label="Next video">
+       <span class="material-symbols-outlined text-on-surface text-3xl md:text-4xl">chevron_right</span>
       </button>
      </div>
     </div>
@@ -359,20 +361,21 @@
   if (!stack) return;
 
   var layers = Array.prototype.slice.call(stack.querySelectorAll('.video-layer'));
-  if (!layers.length) return;
+ if (!layers.length) return;
 
-  var prev = document.getElementById('video-prev');
-  var next = document.getElementById('video-next');
-  var swipeArea = document.getElementById('video-swipe-area');
-  var active = 0;
+ var prev = document.getElementById('video-prev');
+ var next = document.getElementById('video-next');
+ var videoArea = document.getElementById('video-swipe-area');
+ var swipeArea = document.getElementById('video-touch-overlay') || videoArea;
+ var active = 0;
 
   function applyAspect() {
-   if (!swipeArea) return;
+   if (!videoArea) return;
    var layer = layers[active];
    if (!layer) return;
    var aspect = layer.getAttribute('data-aspect') || '16x9';
-   swipeArea.classList.remove('video-area-16x9', 'video-area-9x16');
-   swipeArea.classList.add(aspect === '9x16' ? 'video-area-9x16' : 'video-area-16x9');
+   videoArea.classList.remove('video-area-16x9', 'video-area-9x16');
+   videoArea.classList.add(aspect === '9x16' ? 'video-area-9x16' : 'video-area-16x9');
   }
 
   function pauseOthers(idx) {
