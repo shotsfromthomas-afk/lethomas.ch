@@ -300,6 +300,57 @@
                 box-shadow: 0 0 0 10px rgba(255, 230, 128, 0.22), 0 22px 90px rgba(255, 230, 128, 0.22);
             }
         }
+
+        .scroll-scrub {
+            position: relative;
+            height: 600vh;
+            background-color: inherit;
+        }
+        .scroll-scrub-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: inherit;
+        }
+        .scroll-scrub-media {
+            position: absolute;
+            inset: 0;
+            opacity: 1;
+            will-change: opacity;
+        }
+        .scroll-scrub-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        #arbeiten {
+            margin-top: var(--arbeiten-lift, -140vh);
+            padding-top: var(--arbeiten-pad-top, 160px);
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 767px) {
+            .scroll-scrub {
+                height: 420vh;
+            }
+            #arbeiten {
+                --arbeiten-lift: -110vh;
+                --arbeiten-pad-top: 120px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .scroll-scrub {
+                height: 520vh;
+            }
+            #arbeiten {
+                --arbeiten-lift: -125vh;
+                --arbeiten-pad-top: 140px;
+            }
+        }
     </style>
 </head>
  <body class="bg-surface text-on-surface transition-colors duration-700">
@@ -334,33 +385,14 @@
  </div>
  <main>
  <!-- Hero Section -->
- <section id="hero" class="relative overflow-hidden min-h-screen flex flex-col justify-center px-margin-mobile md:px-margin-desktop pt-20">
- <div class="hero-grid" aria-hidden="true"></div>
- <div class="max-w-screen-xl mx-auto relative z-10">
- <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-gutter">
- <div class="flex-1 order-2 md:order-1">
- <p class="font-label-caps text-label-caps text-primary mb-6 tracking-[0.3em] hero-reveal" data-d="1">Thomas Lemmenmeier</p>
- <h1 class="font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface leading-none mb-12 hero-reveal" data-d="2">
-                    Theorie kennen.<br class="hidden md:block"/> Praxis können.
-                 </h1>
-<div class="hidden md:block w-24 h-px bg-outline-variant mb-12 hero-reveal" data-d="3"></div>
-<div class="flex flex-col md:flex-row md:items-center gap-gutter">
-<p class="md:hidden font-body-lg text-body-lg text-on-surface-variant max-w-xl hero-reveal" data-d="3">
-                        Ich bin Thomas. Marketing-Student und Media Creator. Was mich antreibt: Das Verbinden von strategischem Denken mit echtem Content-Handwerk.
-                    </p>
-<p id="hero-type" class="hidden md:block font-body-lg text-body-lg text-on-surface-variant max-w-xl" data-text="Ich bin Thomas. Marketing-Student und Media Creator. Was mich antreibt: Das Verbinden von strategischem Denken mit echtem Content-Handwerk." aria-label="Ich bin Thomas. Marketing-Student und Media Creator. Was mich antreibt: Das Verbinden von strategischem Denken mit echtem Content-Handwerk."></p>
-<div class="flex gap-4 mt-4 md:mt-0 hero-reveal" data-d="4">
-<a class="hero-cta bg-on-surface text-surface px-8 py-4 font-label-caps text-label-caps hover:bg-primary transition-colors" href="#arbeiten"><span>AUSGEWÄHLTE ARBEITEN</span></a>
-</div>
-</div>
-</div>
- <div class="w-full md:w-[420px] lg:w-[520px] shrink-0 md:ml-auto hero-reveal order-1 md:order-2" data-d="2">
- <div class="relative">
-  <img class="w-full aspect-square object-cover grayscale relative hero-photo" src="./bilder/Thomas.jpg" alt="Thomas Lemmenmeier" loading="lazy"/>
- </div>
- </div>
- </div>
- </div>
+ <section id="hero" class="relative pt-20">
+  <div id="scroll-scrub" class="scroll-scrub">
+   <div class="scroll-scrub-sticky">
+    <div id="scroll-scrub-media" class="scroll-scrub-media">
+     <canvas id="scroll-scrub-canvas" class="scroll-scrub-canvas" data-frame-count="250" data-frame-path="./videos/portfolio-home-frames/Porfolio Home/Porfolio Home_#####.png" data-frame-count-mobile="250" data-frame-path-mobile="./videos/portfolio-home-frames/Porfolio Home mobile_#####.png"></canvas>
+    </div>
+   </div>
+  </div>
  </section>
 <!-- Feature Work: Bento Grid -->
 <section id="arbeiten" class="px-margin-mobile md:px-margin-desktop lg:px-[120px] py-section-gap border-t border-outline-variant">
@@ -649,138 +681,299 @@
 </script>
 <script>
  (function () {
-  var hero = document.getElementById('hero');
-  if (!hero) return;
-
-  var reduceMotion = false;
   try {
-   reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  } catch (err) {}
-
-  if (reduceMotion) {
-   hero.classList.add('hero-ready');
-   return;
-  }
-
-  window.setTimeout(function () {
-   hero.classList.add('hero-ready');
-  }, 60);
- })();
-</script>
-
-<script>
- (function () {
-  var el = document.getElementById('hero-type');
-  if (!el) return;
-
-  var isDesktop = false;
-  try {
-   isDesktop = window.matchMedia && window.matchMedia('(min-width: 768px)').matches;
-  } catch (err) {}
-  if (!isDesktop) return;
-
-  var reduceMotion = false;
-  try {
-   reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  } catch (err) {}
-
-  var fullText = el.getAttribute('data-text') || '';
-  if (reduceMotion) {
-   el.textContent = fullText;
-   return;
-  }
-
-  try {
-   window.scrollTo(0, 0);
-  } catch (err) {}
-
-  el.textContent = '';
-  var frag = document.createDocumentFragment();
-  for (var i = 0; i < fullText.length; i++) {
-   var ch = fullText[i];
-   var span = document.createElement('span');
-   span.className = 'type-char';
-   span.textContent = ch;
-   frag.appendChild(span);
-  }
-  el.appendChild(frag);
-
-  var chars = el.querySelectorAll('.type-char');
-  var idx = 0;
-  var acc = 0;
-  var done = false;
-  var lastScrollY = 0;
-
-  function revealNext(count) {
-   for (var k = 0; k < count; k++) {
-    if (idx >= chars.length) {
-     finish();
-     return;
-    }
-    chars[idx].classList.add('is-on');
-    idx++;
+   if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
    }
+  } catch (err) {}
+
+  try {
+   window.addEventListener('load', function () {
+    window.scrollTo(0, 0);
+   }, { once: true, passive: true });
+  } catch (err) {}
+
+  var section = document.getElementById('scroll-scrub');
+  var canvas = document.getElementById('scroll-scrub-canvas');
+  var media = document.getElementById('scroll-scrub-media');
+  if (!section || !canvas || !media) return;
+
+  var ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  var mql = null;
+  try {
+   mql = window.matchMedia ? window.matchMedia('(max-width: 767px)') : null;
+  } catch (err) {}
+
+  function detectMobile() {
+   if (!mql) return false;
+   return !!mql.matches;
   }
 
-  function finish() {
-   if (done) return;
-   done = true;
-   removeListeners();
+  var isMobile = detectMobile();
+  var frameCount = 0;
+  var framePath = '';
+  var images = [];
+  var loaded = [];
+  var sourceToken = 0;
+
+  function readSourceAttrs(nextIsMobile) {
+   var frameCountAttr = nextIsMobile ? 'data-frame-count-mobile' : 'data-frame-count';
+   var framePathAttr = nextIsMobile ? 'data-frame-path-mobile' : 'data-frame-path';
+
+   var count = Number(canvas.getAttribute(frameCountAttr) || canvas.getAttribute('data-frame-count') || '0');
+   var path = canvas.getAttribute(framePathAttr) || canvas.getAttribute('data-frame-path') || '';
+   return { count: count, path: path };
   }
 
-  function shouldIntercept() {
-   if (done) return false;
-   if (window.scrollY > 0) return false;
+  function initArrays(count) {
+   images = new Array(count);
+   loaded = new Array(count);
+   for (var i = 0; i < loaded.length; i++) loaded[i] = false;
+  }
+
+  function applySource(nextIsMobile) {
+   var cfg = readSourceAttrs(nextIsMobile);
+   var nextCount = cfg.count;
+   var nextPath = cfg.path;
+
+   if (!nextCount || !Number.isFinite(nextCount) || nextCount < 2) return false;
+   if (!nextPath) return false;
+
+   sourceToken++;
+   isMobile = nextIsMobile;
+   frameCount = nextCount;
+   framePath = nextPath;
+   initArrays(frameCount);
+   naturalW = 0;
+   naturalH = 0;
+   lastDrawn = -1;
+   smoothIdx = 0;
    return true;
   }
 
-  function onWheel(e) {
-   if (!shouldIntercept()) return;
-   if (!e) return;
-   var dy = e.deltaY || 0;
-   if (dy === 0) return;
-   e.preventDefault();
+  if (!applySource(isMobile)) return;
 
-   acc += Math.abs(dy);
-   var step = 10;
-   var next = Math.floor(acc / step);
-   if (next > 0) {
-    acc = acc - next * step;
-    revealNext(next);
-   }
+  var naturalW = 0;
+  var naturalH = 0;
+  var lastDrawn = -1;
+  var smoothIdx = 0;
 
-   if (!done) {
-    try { window.scrollTo(0, 0); } catch (err) {}
-   }
+  function clamp01(x) {
+   if (x < 0) return 0;
+   if (x > 1) return 1;
+   return x;
   }
 
-  function onKeyDown(e) {
-   if (!shouldIntercept()) return;
-   var k = e && e.key;
-   if (k !== 'ArrowDown' && k !== 'PageDown' && k !== ' ' && k !== 'Spacebar') return;
-   e.preventDefault();
-   revealNext(2);
-   if (!done) {
-    try { window.scrollTo(0, 0); } catch (err) {}
+  function padN(n, width) {
+   var s = String(n);
+   while (s.length < width) s = '0' + s;
+   return s;
+  }
+
+  function getSrc(idx) {
+   var m = framePath.match(/(#+)/);
+   var width = m && m[1] ? m[1].length : 4;
+   return framePath.replace(/#+/, padN(idx, width));
+  }
+
+  function resizeCanvas() {
+   var dpr = window.devicePixelRatio || 1;
+   var w = Math.max(1, Math.floor(window.innerWidth * dpr));
+   var h = Math.max(1, Math.floor(window.innerHeight * dpr));
+   if (canvas.width !== w) canvas.width = w;
+   if (canvas.height !== h) canvas.height = h;
+  }
+
+  function drawCover(img) {
+   if (!img) return;
+   if (!img.naturalWidth || !img.naturalHeight) return;
+
+   resizeCanvas();
+
+   var cw = canvas.width;
+   var ch = canvas.height;
+   var iw = img.naturalWidth;
+   var ih = img.naturalHeight;
+
+   var scale = Math.max(cw / iw, ch / ih);
+
+   var dw = iw * scale;
+   var dh = ih * scale;
+   var dx = (cw - dw) / 2;
+   var dy = (ch - dh) / 2;
+
+   ctx.clearRect(0, 0, cw, ch);
+   ctx.drawImage(img, dx, dy, dw, dh);
+  }
+
+  function ensureLoad(idx) {
+   if (idx < 0 || idx >= frameCount) return;
+   if (loaded[idx]) return;
+   if (images[idx]) return;
+
+   var tokenAtStart = sourceToken;
+
+   var img = new Image();
+   img.decoding = 'async';
+   img.loading = 'eager';
+   img.src = getSrc(idx);
+   images[idx] = img;
+
+   img.onload = function () {
+    if (tokenAtStart !== sourceToken) return;
+    loaded[idx] = true;
+    if (!naturalW && img.naturalWidth) {
+     naturalW = img.naturalWidth;
+     naturalH = img.naturalHeight;
+    }
+   };
+  }
+
+  function warmStart() {
+   for (var k = 0; k < Math.min(frameCount, 12); k++) ensureLoad(k);
+  }
+
+  function backgroundPreload() {
+   var maxConcurrent = 6;
+   var inFlight = 0;
+   var next = 0;
+   var tokenAtStart = sourceToken;
+
+   function pump() {
+    while (inFlight < maxConcurrent && next < frameCount) {
+     (function (idx) {
+      inFlight++;
+      ensureLoad(idx);
+      var img = images[idx];
+      if (!img) {
+       inFlight--;
+       return;
+      }
+      var done = function () {
+       inFlight--;
+       pump();
+      };
+      img.onload = function () {
+       if (tokenAtStart !== sourceToken) {
+        done();
+        return;
+       }
+       loaded[idx] = true;
+       if (!naturalW && img.naturalWidth) {
+        naturalW = img.naturalWidth;
+        naturalH = img.naturalHeight;
+       }
+       done();
+      };
+      img.onerror = done;
+     })(next);
+     next++;
+    }
    }
+
+   pump();
   }
 
-  function onScroll() {
-   if (!shouldIntercept()) return;
-   if (window.scrollY !== 0) {
-    try { window.scrollTo(0, 0); } catch (err) {}
+  function getProgress() {
+   var rect = section.getBoundingClientRect();
+   var total = rect.height - window.innerHeight;
+   if (total <= 0) return 0;
+   var p = (-rect.top) / total;
+   return clamp01(p);
+  }
+
+  function onTick() {
+   var p = getProgress();
+   var fadeStart = 0.97;
+   var fadeP = 0;
+   if (p > fadeStart) fadeP = (p - fadeStart) / (1 - fadeStart);
+   if (fadeP < 0) fadeP = 0;
+   if (fadeP > 1) fadeP = 1;
+   media.style.opacity = String(1 - fadeP);
+
+   var playP = p < fadeStart ? (p / fadeStart) : 1;
+   if (playP < 0) playP = 0;
+   if (playP > 1) playP = 1;
+   var target = playP * (frameCount - 1);
+   if (!Number.isFinite(target)) target = 0;
+   if (target < 0) target = 0;
+   if (target > frameCount - 1) target = frameCount - 1;
+
+   var ease = 0.08;
+   smoothIdx = smoothIdx + (target - smoothIdx) * ease;
+   var idx = Math.round(smoothIdx);
+   if (idx < 0) idx = 0;
+   if (idx > frameCount - 1) idx = frameCount - 1;
+
+   ensureLoad(idx);
+   for (var look = 1; look <= 8; look++) {
+    ensureLoad(idx + look);
+    ensureLoad(idx - look);
    }
+
+   if (idx !== lastDrawn && loaded[idx] && images[idx]) {
+    drawCover(images[idx]);
+    lastDrawn = idx;
+   }
+
+   window.requestAnimationFrame(onTick);
   }
 
-  function removeListeners() {
-   window.removeEventListener('wheel', onWheel, { capture: true });
-   document.removeEventListener('keydown', onKeyDown);
-   window.removeEventListener('scroll', onScroll);
+  function tryDrawFirst() {
+   if (loaded[0] && images[0]) {
+    drawCover(images[0]);
+    lastDrawn = 0;
+    return true;
+   }
+   return false;
   }
 
-  window.addEventListener('wheel', onWheel, { passive: false, capture: true });
-  document.addEventListener('keydown', onKeyDown);
-  window.addEventListener('scroll', onScroll, { passive: true });
+  warmStart();
+  backgroundPreload();
+
+  window.addEventListener('resize', function () {
+   var nextIsMobile = detectMobile();
+   if (nextIsMobile !== isMobile) {
+    if (applySource(nextIsMobile)) {
+     warmStart();
+     backgroundPreload();
+     lastDrawn = -1;
+     tryDrawFirst();
+    }
+    return;
+   }
+   if (lastDrawn >= 0 && images[lastDrawn]) drawCover(images[lastDrawn]);
+  }, { passive: true });
+
+  if (mql) {
+   var onMqlChange = function () {
+    var nextIsMobile = detectMobile();
+    if (nextIsMobile === isMobile) return;
+    if (applySource(nextIsMobile)) {
+     warmStart();
+     backgroundPreload();
+     lastDrawn = -1;
+     tryDrawFirst();
+    }
+   };
+   try {
+    if (mql.addEventListener) {
+     mql.addEventListener('change', onMqlChange);
+    } else if (mql.addListener) {
+     mql.addListener(onMqlChange);
+    }
+   } catch (err) {}
+  }
+
+  var tries = 0;
+  var timer = window.setInterval(function () {
+   tries++;
+   if (tryDrawFirst() || tries > 40) window.clearInterval(timer);
+  }, 50);
+
+  window.requestAnimationFrame(onTick);
  })();
 </script>
 </div>
